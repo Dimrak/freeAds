@@ -120,7 +120,6 @@ class AdvertController extends Controller
        if ($id_user == $advert->user_id || $id_user == 1) {
            $data['advert'] = $advert;
            $data['attribute_sets'] = AttributeSet::all();
-           $data['attributes'] = AttributeSetRelationship::all()->where('attribute_set_id', $advert->attribute_set_id);
            $data['categories'] = Category::all();
            $x = 0;
            $data['counter'] = $x;

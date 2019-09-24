@@ -1,4 +1,5 @@
 @extends('layouts.app')
+{{--@exclude('jumbotron')--}}
 @section('content')
     @role('admin')
     <div class="container adminPanel">

@@ -1,3 +1,7 @@
+@if(request()->route()->getName() === ('admin.index') ||
+request()->route()->getName() === ('admin.create'))
+    <h4 class="alert alert-info text-center w-25 mr-auto ml-auto mt-2 text-dark">Admin panel</h4>
+    @else
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading">Free adverts</h1>
@@ -20,3 +24,4 @@
 
     </div>
 </section>
+    @endif

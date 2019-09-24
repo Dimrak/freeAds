@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\AttributeSet;
 use Illuminate\Http\Request;
+use App\AttributeSet;
 
-class AttributesController extends Controller
+class AttributeSetController extends Controller
 {
-    public function __construct()
-    {
-
-    }
-
+    //
     public function store(Request $request)
     {
 //        dd($request);

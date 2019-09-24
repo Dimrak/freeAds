@@ -18,6 +18,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','CategoryController@index');
 Route::get('home','CategoryController@index');
 Auth::routes(); //this does what?, sin esto al poner
+Route::resource('attributeSet', 'AttributeSetController');
 //Route::resource('advert','AdvertController');
 // /home daria un error al estar logeado
 //Route::get('advert/{id}/edit', 'AdvertController@index');
@@ -34,8 +35,10 @@ Route::delete('/advert/{id}', 'AdvertController@destroy')->name('advert.destroy'
 Route::get('admin/adverts', 'AdminController@adverts')->name('admin.adverts');
 Route::get('admin/categories', 'AdminController@categories')->name('admin.categories');
 Route::get('admin/attributes', 'AdminController@attributes')->name('admin.attributes');
-//Route::post('attributes/storeAttSet', 'AttributesController@storeAttSet')->name('attributes.storeAttSet');
-Route::resource('attributes', 'AttributesController');
+//Route::post('attributes/storeAttSet', 'AttributeController@storeAttSet')->name('attributes.storeAttSet');
+Route::resource('attribute', 'AttributeController');
+Route::resource('attributeSetRela', 'AttributeSetRelaController');
+
 
 Route::resource('advert','AdvertController');
 Route::resource('category','CategoryController');
