@@ -4,15 +4,11 @@
 <section class="mb-4">
     <div class="album py-5 bg-light">
         <div class="container">
-            @if(session()->has('message'))
-                <div class="alert alert-danger w-25 d-block mr-auto ml-auto" role="alert">
-                {{session()->get('message')}}
-                </div>
-            @endif
+
             <div class="row">
                 @foreach($adverts as $advert)
                     @if ($advert->active != 0)
-                <div class="col-md-4">
+                <div class="col-md-4 border border-dark rounded">
                     <div class="card mb-4 shadow-sm">
                         <img src="{{$advert-> image}}" class="card-img-top" alt="{{ $advert->slug}}">
                         <div class="card-body">
@@ -21,10 +17,9 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ route('advert.show', $advert->slug)}}" class="text-decoration-none">View</a></button>
-                                    @role('admin')
                                     <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{route('advert.edit', $advert->id)}}" class="text-decoration-none">Edit</a></button>
-                                    @endrole
                                 </div>
+                                <small class="text-muted">9 mins</small>
                             </div>
                         </div>
                     </div>
@@ -36,4 +31,15 @@
     </div>
 </section>
 {{$adverts->links()}}
+
+            {{--<ul class="list-group">--}}
+                {{--@foreach($adverts as $advert)--}}
+                {{--<li class="list-group-item">{{$advert->title}}</li>--}}
+            {{--</ul>--}}
+            {{--@endforeach--}}
+
+{{--            <a href=""></a>--}}
+    {{--</div>--}}
+
+
 @endsection

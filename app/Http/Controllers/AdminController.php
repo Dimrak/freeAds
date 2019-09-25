@@ -94,6 +94,9 @@ class AdminController extends Controller
         $data['att_set'] = AttributeSet::all();
         $data['attributesRela'] = AttributeSetRelationship::all();
         $data['attributes'] = Attribute::all();
+//        dd(Attribute::all());
+//        dd(AttributeSetRelationship::all());
+//        dd(Attribute::all());
         return view('admin.attributes', $data);
     }
    public function categories()

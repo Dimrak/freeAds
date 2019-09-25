@@ -30,6 +30,17 @@
                                 <input type="radio" class="" name="att{{$single->attribute_id}}" value="no">no<br>
 {{--                                <label for="{{$single->attributes->name}}">No</label>--}}
                             @endforeach
+
+                            @foreach($att_set as $setter)
+                                <tr>
+                                    <th scope="row" class="bg-primary">{{$setter->name}}</th>
+                                    @foreach($attributesRela as $relation)
+                                        @if($relation->attribute_set_id == $setter->id)
+                                            <td class="bg-success">{{$relation->attributes->name}}</td>
+                                        @endif
+                                    @endforeach
+                                </tr>
+                            @endforeach
                             <button class="btn alert-success mt-1">Update</button>
                         </form>
                         <a href="{{  route('advert.index') }}" class="nav-link btn btn-outline-dark mt-3">Go back to advert list</a>

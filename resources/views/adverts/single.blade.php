@@ -15,6 +15,7 @@
                     <p class="card-text">Price: {{ $advert-> price}} €</p>
                     <p class="card-text">Person of contact: <a href="{{route('advert.byUser', $user->id)}}">{{ ucfirst($user->name)}} </a> </p>
                     <p class="card-text"><small class="text-muted">Last change: {{$advert->updated_at}}</small></p>
+                    <p class="card-text"><small class="text-muted">Times seen: {{$advert->counter}}</small></p>
                 </div>
             </div>
 

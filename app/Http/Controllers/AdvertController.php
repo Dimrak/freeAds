@@ -92,6 +92,8 @@ class AdvertController extends Controller
        $id = $advert->user_id;
        $user = User::find($id);
        $data['user'] = $user;
+       $advert->counter = $advert->counter + 1;
+       $advert->save();
 //       $data['users'] = User::all();
 //       dd($advert->id);
        return view('adverts.single', $data);
@@ -117,7 +119,7 @@ class AdvertController extends Controller
         //Check the id of the user and compares with the author_id
         $id_user = Auth::user()->id;
         $advert = Advert::find($id);
-       if ($id_user == $advert->user_id || $id_user == 1) {
+       if ($id_user == $advert->user_id || $id_user === 1) {
            $data['advert'] = $advert;
            $data['attribute_sets'] = AttributeSet::all();
            $data['categories'] = Category::all();

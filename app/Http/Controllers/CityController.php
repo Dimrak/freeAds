@@ -40,7 +40,7 @@ class CityController extends Controller
        $city = new City();
        $city->name = $request->cityName;
        $city->save();
-       return redirect()->route('city.index');
+       return redirect()->route('city.create')->with('message', 'City added');
     }
 
     /**

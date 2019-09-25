@@ -3,6 +3,11 @@
 
 @section('content')
     <div class="container">
+        @if(session()->has('message'))
+            <div class="alert alert-success w-25 d-block mr-auto ml-auto text-center" role="alert">
+                {{session()->get('message')}}
+            </div>
+        @endif
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -16,6 +21,9 @@
                         </form>
                     </div>
                 </div>
+                @hasrole('admin')
+                <a class="badge badge-success p-2 mt-2" href="{{route('admin.index')}}">Back admin page</a>
+                @endrole
             </div>
         </div>
     </div>

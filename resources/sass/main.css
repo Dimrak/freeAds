@@ -1,3 +1,6 @@
+body {
+    zoom: 0.9;
+}
 main.py-4 {
     padding-top: 0rem!important;
 }
@@ -234,28 +237,4 @@ span{
     border: 2px solid greenyellow;
     color: black;
     font-weight: 700;
-}
-.desktopSmall{
-    display: none;
-}
-.desktopBig{
-    display: none;
-}
-/**/
-@media only screen and (min-width:1024px){
-    .desktopSmall{
-        display: flex;
-    }
-}
-@media only screen and (min-width: 1440px){
-    .desktopSmall{
-        display: none;
-    }
-    .desktopBig{
-        display: flex;
-    }
-    #categoryIndex{
-        width: 80%;
-    }
-
 }
