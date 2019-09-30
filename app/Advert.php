@@ -17,6 +17,10 @@ class Advert extends Model
       return $this->hasMany('App\Comment', 'advert_id', 'id');
 
    }
+   public function categoryName()
+   {
+      return $this->hasOne('App\Category', 'id', 'cat_id');
+   }
    public function category()
    {
         return $this->hasOne('App\Advert', 'id', 'cat_id');

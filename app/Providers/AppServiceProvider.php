@@ -15,9 +15,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function register()
     {
+
         view()->composer('layouts.app', function($view) {
             //get all parent categories with their subcategories
-            $categories = \App\Category::parents()->get();
+            $categories = \App\Category::parents()->get(); //For the categories in dropdown
             $user = Auth::user(); //get the id
            if ($user) {
               $messages = \App\Message::all()->where('recip_id', $user->id)->Where('status',1);
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
               $userOne = '';
            }
             //attach the categories to the view
+//            $view->with(compact( 'messages'));
             $view->with(compact('categories', 'messages'));
         });
     }

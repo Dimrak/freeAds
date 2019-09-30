@@ -24,7 +24,10 @@
                                 <option class="form-control mt-1">Choose a category</option>
                                 <option value="0">New category</option>
                                 @foreach($categories as $category)
-                                    <option value=" {{ $category->id }}">{{ $category->title}}</option>
+                                    <option class="bg-success text-white" value=" {{ $category->id }}">Main category - {{ $category->title}}</option>
+                                @foreach ($category->subCategories as $subcat)
+                                    <option class="" value="{{ $subcat->id }}">{{ $subcat->title}}</option>
+                                    @endforeach
                                 @endforeach
                             </select>
                             <button class="btn alert-success mt-1">Create</button>

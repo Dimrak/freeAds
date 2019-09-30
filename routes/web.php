@@ -38,7 +38,9 @@ Route::get('admin/attributes', 'AdminController@attributes')->name('admin.attrib
 //Route::post('attributes/storeAttSet', 'AttributeController@storeAttSet')->name('attributes.storeAttSet');
 Route::resource('attribute', 'AttributeController');
 Route::resource('attributeSetRela', 'AttributeSetRelaController');
-
+Route::get('category/sub/{subCategory}', 'CategoryController@showSub')->name('category.showSub');
+Route::get('category/sub/type/{secondSub}', 'CategoryController@showSubSub')->name('category.showSubSub');
+//Route::get('category/show/{slug}/{slug}', 'CategoryController@show')->name('category.subcategory');
 
 Route::resource('advert','AdvertController');
 Route::resource('category','CategoryController');

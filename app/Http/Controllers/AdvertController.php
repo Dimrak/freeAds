@@ -27,9 +27,11 @@ class AdvertController extends Controller
      */
     public function index()
     {
-      $data['adverts'] = Advert::paginate(3);
-      //$data['content'] = Str::words($adverts->content, 20,'...');
+//       $data['adverts'] = Advert::active()->paginate(2);
+      $data['adverts'] = Advert::paginate(4);
+//        $data['content'] = Str::words($adverts->content, 20,'...');
       return view('adverts.index', $data);
+
     }
 
     /**
@@ -44,6 +46,10 @@ class AdvertController extends Controller
         $data['title'] = 'Create advert';
         $data['attributeSets'] = AttributeSet::all();
         $data['attributes'] = Attribute::all();
+
+//        $attributes = new AttributeSet();
+//        dd($attributes->relationCategory());
+
         return view('adverts.create', $data);
     }
 
@@ -69,14 +75,15 @@ class AdvertController extends Controller
        $advert->cat_id = $request->category;
         $advert->image = $request->image;
        $advert->city_id = $request->city;
-       $user = Auth::user()->id;
-       $advert->user_id = $user;
+       $user = Auth::user();
+//       dd($user);
+       $advert->user_id = $user->id;
        $advert->price = $request->price;
        $advert->slug = Str::slug($request->title, '-');
+       $advert->counter = 0;
        $advert->save();
        $slug = $advert->slug;
        return redirect()->route('advert.show', $slug);
-
     }
 
     /**
@@ -89,23 +96,8 @@ class AdvertController extends Controller
     {
        $data['advert'] = $advert;
        $data['comments'] = Comment::all();
-       $id = $advert->user_id;
-       $user = User::find($id);
-       $data['user'] = $user;
-       $advert->counter = $advert->counter + 1;
-       $advert->save();
-//       $data['users'] = User::all();
-//       dd($advert->id);
+       $data['users'] = User::all();
        return view('adverts.single', $data);
-    }
-
-    public function byUser($id)
-    {
-        $adverts = Advert::all()->where('user_id', $id);
-        $user = User::find($id);
-        $data['adverts'] = $adverts;
-        $data['user'] = $user;
-        return view('adverts.byUser', $data);
     }
 
     /**
@@ -116,19 +108,16 @@ class AdvertController extends Controller
      */
     public function edit($id)
     {
-        //Check the id of the user and compares with the author_id
-        $id_user = Auth::user()->id;
-        $advert = Advert::find($id);
-       if ($id_user == $advert->user_id || $id_user === 1) {
-           $data['advert'] = $advert;
-           $data['attribute_sets'] = AttributeSet::all();
-           $data['categories'] = Category::all();
-           $x = 0;
-           $data['counter'] = $x;
-           return view('adverts.edit', $data);
-       }else{
-           return redirect()->back()->with('message', 'Cannot edit adverts which are not yours');
-       }
+       $advert = Advert::find($id);
+       $data['advert'] = $advert;
+       $data['attribute_sets'] = AttributeSet::all();
+       $data['att_set'] = AttributeSet::all();
+       $data['attributes'] = AttributeSetRelationship::all()->where('attribute_set_id',$advert->attribute_set_id);
+       $data['attributesRela'] = AttributeSetRelationship::all()->where('attribute_set_id',$advert->attribute_set_id);
+       $data['categories'] = Category::all();
+       $x = 0;
+       $data['counter'] = $x;
+       return view('adverts.edit', $data);
     }
     /**
      * Update the specified resource in storage.
@@ -139,6 +128,12 @@ class AdvertController extends Controller
      */
     public function update(Request $request, $id)
     {
+//       if (!isset($request->att1)){
+//          $request->att1 = 'no';
+//          dd($request->att1);
+//       }
+//        dd($request);
+       //Updates the advert details
        $advert = Advert::find($id);
        $advert->title = $request->title;
        $advert->content = $request->content_text;
@@ -147,21 +142,59 @@ class AdvertController extends Controller
        $advert->attribute_set_id = $advert->attribute_set_id;
        $advert->slug = Str::slug($request->title);
        $advert->save();
+       //Save attribute values
+      //id	bigint(20) unsigned Auto Increment
+      //attribute_id	int(11)
+      //advert_id	int(11)
+      //value	varchar(255)
+      //created_at	timestamp NULL
+      //updated_at	timestamp NULL
 
-       //Attributes saving
-       $keys = $request->keys();
-           foreach ($keys as $key){
-            // strpos(original_str, search_str, start_pos)
-               if(strpos($key, 'att')!== false){
-//                   str_replace ( $searchVal, $replaceVal, $subjectVal, $count )
-                   $attributeID = str_replace('att','',$key);
-                   $att = new AttributesValue();
-                   $att->attribute_id = $attributeID;
-                   $att->advert_id = $advert->id;
-                   $att->value = $request->$key;
-                   $att->save();
-               }
-           }
+       $attributes = AttributeSetRelationship::all()->where('attribute_set_id',$advert->attribute_set_id);
+//       dd($attributes);
+       $counter = 0;
+       foreach($attributes as $single){
+//          for ($i = 0; $i <= count($attributes); $i++) {
+//             dd($i);
+             $att = new AttributesValue();
+             $att->attribute_id = $single->attribute_id;
+             $att->advert_id = $advert->id;
+             if (empty($request->att0)){
+               $att->value = 'no';
+             }else {
+                $att->value = $request->att0;
+             }
+//             $value = $request->att . $i;
+////
+////             dd($request);
+//             $value = $request->att[$i];
+//             $att->value = $request->att.$i;
+
+//             if ($value == 0){
+//                $att->value = 'no';
+//             }else{
+//                $att->value = 'yes';
+//             }
+//             dd($value);
+//             foreach ($value as $key => $single){
+////               dd($single);
+//             }
+//             if (!empty($value)){
+//                $value = 'no';
+//                $att->value = $value;
+//             }else{
+//                $att->value = 'yes';
+//             }
+//              dd($request->att1);
+//             $attribuSingle = $request->att . $i;
+//             dd($attribuSingle);
+//             $att->value = $attribuSingle;
+             $att->save();
+             $counter++;
+//             dd($i);
+//          }
+//          dd($request->att.$counter);
+       }
        return redirect()->route('advert.index');
     }
 
@@ -174,22 +207,27 @@ class AdvertController extends Controller
      */
    public function destroy($id)
    {
-       $advert = Advert::find($id);
-       $advert->destroy($id);
-       $user = Auth::user();
-      if($user && ($user->hasRole('admin'))){
-         return redirect()->action('AdminController@index')->with('message', 'Advert deleted');
-      }else{
-         return redirect()->action('HomeController@index')->with('message', 'Advert deleted');
-      }
-   }
-    public function disable($id)
-    {
+//      dd($id);
       $advert = Advert::find($id);
+//      dd($advert);
       $advert->active = 0;
       $advert->save();
-//      return redirect()->back()->with('message', 'Advert disable');
-      return redirect()->route('advert.index')->with('message', 'Advert disable');
+      $user = Auth::user();
+      if($user && ($user->hasRole('admin'))){
+         return redirect()->action('AdminController@index');
+      }else{
+         return redirect()->action('HomeController@index');
+      }
+   }
+
+    public function disable($id)
+    {
+//       dd('hel');
+       $id;
+       $advert = Advert::find($id);
+      $advert->active = 0;
+      $advert->save();
+      return redirect()->route('advert.index')->with('Advert disable');
 
     }
 }

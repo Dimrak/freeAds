@@ -17,4 +17,18 @@ class AttributeController extends Controller
         return redirect()->route('admin.attributes')->with('message', 'Attribute ' . $request->name . ' created');
 
     }
+   public function destroy($id)
+   {
+//      dd($id);
+      $attribute = Attribute::find($id);
+//      dd($advert);
+      $attribute->destroy();
+      $attribute->save();
+      $user = Auth::user();
+      if($user && ($user->hasRole('admin'))){
+         return redirect()->action('AdminController@index');
+      }else{
+         return redirect()->action('HomeController@index');
+      }
+   }
 }

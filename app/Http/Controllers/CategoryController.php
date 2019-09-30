@@ -7,7 +7,9 @@ use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-
+//use Illumintate\Http\RedirectResponse;
+//use Illuminate\Routing\Redirector;
+//use App\Helper;
 
 class CategoryController extends Controller
 {
@@ -22,6 +24,8 @@ class CategoryController extends Controller
         $adverts = Advert::orderBy('created_at', 'asc')->take(1)->get();
         $data['categories'] = $categories;
         $data['adverts'] = $adverts;
+        $counter = [];
+        $data['counter'] = $counter;
         return view('category.index', $data);
     }
 
@@ -34,7 +38,7 @@ class CategoryController extends Controller
     {
        $user = Auth::user();
        if ($user && $user->hasRole('admin')) {
-          $categories = Category::all();
+          $categories = Category::all()->where('parent_id', 0);
 //       $adverts = Advert::all();
           $data['categories'] = $categories;
           return view('category.create', $data);
@@ -63,11 +67,6 @@ class CategoryController extends Controller
        return redirect()->back()->with('message', 'Category created');
 
     }
-    public function categories()
-    {
-        $data['categories'] = Category::all();
-        return view('category.categories', $data);
-    }
 
     /**
      * Display the specified resource.
@@ -77,10 +76,54 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-//       dd($category->advertsCat());
+       //Takes all parent categories
+//       $categorySecond = Category::all()->where('id', $category->id);
+       //Select the current parent category
        $data['category'] = $category;
-//        $data['title'] = 'Adverts from ' . $categories->title;
+//       $data['categorySecond'] = $categorySecond;
+       //Takes the id of the current parent
+       $data['id'] = $category->id;
+//       dd($data);
        return view('category.single', $data);
+    }
+    public function showSub(Category $subCategory)
+    {
+       $fatherData = Category::all()->where('id', $subCategory->parent_id);
+       $dataFather = [];
+       foreach($fatherData as $dataArray){
+          $slug = $dataArray->slug;
+          array_push($dataFather, $slug);
+       }
+       $data['father'] = $dataFather[0];
+       $data['subCategory'] = $subCategory;
+       $data['id'] = $subCategory->id;
+//       dd($data);
+       return view('category.single-sub', $data);
+    }
+    public function showSubSub(Category $secondSub)
+    {
+       $parentId = $secondSub->parent_id;
+       $firstParent = Category::all()->where('id', $parentId);
+       $dataFirst = [];
+       foreach($firstParent as $dataArray){
+         $slug = $dataArray->slug;
+         $fatherId = $dataArray->parent_id;
+          array_push($dataFirst, $slug);
+          array_push($dataFirst, $fatherId);
+       }
+       $fatherData = Category::all()->where('id', $dataFirst[1]);
+       $dataFather = [];
+       foreach($fatherData as $data){
+          $slug = $data->slug;
+          array_push($dataFather, $slug);
+       }
+       $data['father'] = $dataFather[0];
+       $data['firstParent'] = $dataFirst[0];
+       $data['secondSub'] = $secondSub;
+       $data['id'] = $secondSub->id;
+//       dd($data);
+
+       return view('category.second-sub', $data);
     }
 
     /**

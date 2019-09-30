@@ -23,12 +23,9 @@
                             <p>Extra filters: </p>
                             <!--attributes-->
                             @foreach($attributes as $single)
-                                {{--{{$counter++}}--}}
-{{--                            {{dd($attributes)}}--}}
                                 <label for="{{$single->attributes->name}}">{{ucfirst($single->attributes->name)}}</label><br>
                                 <input type="radio" name="att{{$single->attribute_id}}" value="yes">yes
                                 <input type="radio" class="" name="att{{$single->attribute_id}}" value="no">no<br>
-{{--                                <label for="{{$single->attributes->name}}">No</label>--}}
                             @endforeach
 
                             @foreach($att_set as $setter)

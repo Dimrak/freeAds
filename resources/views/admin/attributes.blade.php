@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row w-75 mr-auto ml-auto">
             {{--Form to create parent attribute--}}
-            <div class="mt-2 rounded p-3 col-5 border border-dark mr-4 bg-light">
+            <div class="mt-2 rounded p-3 col border border-dark mr-4 bg-light">
                 <h3 class="p-1 text-center">Create attribute family</h3>
                 <form method="post" action="{{ route('attributeSet.store') }}">
                     @csrf
@@ -17,9 +17,8 @@
                     <button class="btn alert-success mt-2 mb-2">Create</button>
                 </form>
             </div>
-
             {{--            Attribute creation--}}
-            <div class="mt-2 rounded p-3 col-5 border border-dark bg-light mr-4">
+            <div class="mt-2 rounded p-3 col border border-dark bg-light mr-4">
                 <h3 class="p-1 text-center">Create attribute</h3>
                 <form method="post" action="{{ route('attribute.store') }}">
                     @csrf
@@ -29,6 +28,22 @@
                     <button class="btn alert-success mt-2 mb-2">Create</button>
                 </form>
             </div>
+            {{--Delete attribute--}}
+            {{--<a href="{{route('attribute')}}"></a>--}}
+            {{--<div class="mt-2 rounded p-3 col border border-dark bg-light mr-4">--}}
+                {{--<h3 class="p-1 text-center">Delete attribute</h3>--}}
+                {{--<form method="post" action="{{ route('attribute.destroy') }}">--}}
+                    {{--@method('DELETE')--}}
+                    {{--@csrf--}}
+                    {{--<select name="attributeDelete" id="" class="d-block mb-2">--}}
+                    {{--@foreach($attributes as $singleAtt)--}}
+                            {{--<option class="mr-2" type="radio" name="att{{$singleAtt->id}}"--}}
+                                   {{--value="{{$singleAtt->id}}">{{ $singleAtt->name }}--}}
+                    {{--@endforeach--}}
+                    {{--</select>--}}
+                    {{--<button class="btn alert-success mt-2 mb-2">Delete</button>--}}
+                {{--</form>--}}
+            {{--</div>--}}
         </div>
         <div class="row w-75 h-25 text-dark mr-auto ml-auto mb-2">
             {{--            --}}
