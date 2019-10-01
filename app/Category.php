@@ -27,6 +27,10 @@ class Category extends Model
       return $this->hasMany('App\Advert', 'cat_id','id');
 //      return $query->where('')
    }
+   public function name()
+   {
+    return $this->hasOne('App\Category','parent_id', 'id');
+   }
    public function advertCountGlobal()
    {
       //que coja los adverts que su cat_id sea parent de

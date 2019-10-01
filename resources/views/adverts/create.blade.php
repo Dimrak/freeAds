@@ -12,9 +12,10 @@
                     <div class="card-body">
                         <form method="post" action=" {{ route('advert.store') }}" enctype="multipart/form-data">
                             @csrf
-                            <select name="category" id="">
+                            <select name="categoryFinal" id="">
                                 <option class="form-control mt-1">Choose the type</option>
                                 @foreach($secondSubCategories as $cat)
+{{--                                    {{dd($cat->id)}}--}}
                                     <option value=" {{ $cat->id }}">{{$cat->title }}</option>
                                 @endforeach
                             </select>
@@ -35,7 +36,7 @@
                                 <input type="radio" name="att{{$single->attribute_id}}" value="yes">yes
                                 <input type="radio" class="" name="att{{$single->attribute_id}}" value="no">no<br>
                             @endforeach
-                            <input type="hidden" name="category" value="{{$category_id}}">
+                            <input type="text" name="categorySub" value="{{$category_id}}">
                             <button class="btn alert-success mt-1">Create</button>
                         </form>
                     </div>

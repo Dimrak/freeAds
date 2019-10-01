@@ -3,7 +3,7 @@
 @section('content')
     <div class="container pr-5 pl-5">
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb p-3 mt-2 w-75 mr-auto ml-auto">
+        <ol class="breadcrumb p-3 mt-2 w-50 mr-auto ml-auto">
             <li class="breadcrumb-item"><a href="{{route('category.index')}}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{route('category.show', $father)}}">{{ucfirst($father)}}</a></li>
             <li class="breadcrumb-item"><a href="{{route('category.showSub', $firstParent)}}">{{ucfirst($firstParent)}}</a></li>

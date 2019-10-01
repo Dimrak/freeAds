@@ -40,7 +40,7 @@ class AdvertController extends Controller
      */
     public function create(Request $request)
     {
-        dd($request->category);
+//        dd($request->category);
         if (!$request->category == 0){
             $category = Category::all()->where('id', $request->category)->first();
             $catTitle = Category::all()->where('id', $category->parent_id)->first();
@@ -53,9 +53,6 @@ class AdvertController extends Controller
             return view('adverts.create', $data);
         }else{
             $data['category'] = $request->category;
-//            $id = $_GET;
-//            dd($id);
-            dd($data);
             return redirect()->route('advert.createSub', $data)->with('message', 'Choose a subcategory');
         }
 
@@ -89,11 +86,12 @@ class AdvertController extends Controller
     }
     public function store(Request $request)
     {
+//        dd($request->categoryFinal);
        $advert = new Advert();
        //valores derecha son los del form
        $advert->title = $request->title;
        $advert->content = $request->content_text;
-       $advert->cat_id = $request->category;
+       $advert->cat_id = $request->categoryFinal;
         $advert->image = $request->image;
        $advert->city_id = $request->city;
        $user = Auth::user();
@@ -116,17 +114,20 @@ class AdvertController extends Controller
     public function show(Advert $advert)
     {
        $data['advert'] = $advert;
-//       dd($advert->cat_id);
-        dd($advert->cat_id);
-       $subCategory = Category::all()->where('id', $advert->cat_id)->first();
-       dd($subCategory);
-       $category = Category::all()->where('id', $subCategory->parent_id)->first();
-//       $secondSub = Category::all()->where('id',)
-
+//        dd($advert->cat_id); //479
+        $secondSub = Category::all()->where('id', $advert->cat_id)->first();
+//       $subCategory = Category::all()->where('parent_id', $secondSub->parent_id)->();
+//       $subCategory = Category::find($secondSub->parent_id,'parent_id')->first();
+       $subCategory = Category::all()->where('id', $secondSub->parent_id)->first();
+//        dd($subCategory->title);
+        $category = Category::all()->where('id', $subCategory->parent_id)->first();
+//         dd($category->title);
+        $data['cat'] = $category->title;
+       $data['secondSub'] = $secondSub->title;
        $data['sub'] = $subCategory->title;
-       $data['cat'] = $category->title;
        $data['comments'] = Comment::all();
        $data['users'] = User::all();
+//       dd($data);
        return view('adverts.single', $data);
     }
 

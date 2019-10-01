@@ -4,11 +4,12 @@
 
 <div class="container">
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb p-3 mt-2 w-75 mr-auto ml-auto">
+        <ol class="breadcrumb p-3 mt-2 w-50 mr-auto ml-auto">
             <li class="breadcrumb-item"><a href="{{route('category.index')}}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{route('category.show', $cat)}}">{{ucfirst($cat)}}</a></li>
             <li class="breadcrumb-item"><a href="{{route('category.showSub', $sub)}}">{{ucfirst($sub)}}</a></li>
-{{--            <li class="breadcrumb-item"><a href="{{route('category.showSubSub', $secondSub->slug)}}">{{ucfirst($secondSub->slug)}}</a></li>--}}
+            <li class="breadcrumb-item"><a href="{{route('category.showSubSub', $secondSub)}}">{{ucfirst($secondSub)}}</a></li>
+            <li class="breadcrumb-item"><a href="{{route('advert.show', $advert->title)}}">{{ucfirst($advert->title)}}</a></li>
         </ol>
     </nav>
     <div class="card mb-3 mr-auto ml-auto mt-3 border-2 border-dark p-2" style="max-width: 600px;">
