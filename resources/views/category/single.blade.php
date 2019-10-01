@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+    <div class="container pr-5 pl-5">
+    <nav aria-label="breadcrumb" class="">
+        <ol class="breadcrumb p-3 mt-2 w-50 mr-auto ml-auto">
             <li class="breadcrumb-item"><a href="{{route('category.index')}}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{route('category.show', $category->slug)}}">{{ucfirst($category->title)}}</a></li>
         </ol>
@@ -47,6 +48,7 @@
                 @endforeach
             @endforeach
         </ul>
+    </div>
     </div>
         {{--Showing the secondSub--}}
 

@@ -31,7 +31,6 @@ class AdvertController extends Controller
       $data['adverts'] = Advert::paginate(4);
 //        $data['content'] = Str::words($adverts->content, 20,'...');
       return view('adverts.index', $data);
-
     }
 
     /**
@@ -39,20 +38,46 @@ class AdvertController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $data['categories'] = Category::all();
-        $data['cities'] = City::all();
-        $data['title'] = 'Create advert';
-        $data['attributeSets'] = AttributeSet::all();
-        $data['attributes'] = Attribute::all();
+        dd($request->category);
+        if (!$request->category == 0){
+            $category = Category::all()->where('id', $request->category)->first();
+            $catTitle = Category::all()->where('id', $category->parent_id)->first();
+            $data['category_id'] = $category->id;
+            $data['setter_id'] = $category->attribute_set_id;
+            $data['secondSubCategories'] = Category::all()->where('parent_id', $category->id);
+            $data['cities'] = City::all();
+            $data['title'] = $catTitle->title . '/' . $category->title;
+            $data['attributeSetRel'] = AttributeSetRelationship::all()->where('attribute_set_id', $category->attribute_set_id);
+            return view('adverts.create', $data);
+        }else{
+            $data['category'] = $request->category;
+//            $id = $_GET;
+//            dd($id);
+            dd($data);
+            return redirect()->route('advert.createSub', $data)->with('message', 'Choose a subcategory');
+        }
 
-//        $attributes = new AttributeSet();
-//        dd($attributes->relationCategory());
-
-        return view('adverts.create', $data);
     }
+    public function createTemplate()
+    {
+       $data['parentCategories'] = Category::all()->where('parent_id', 0);
+       return view('adverts.createTemplate', $data);
+    }
+    public function createSub(Request $request)
+    {
+        if (!$request->category == 0){
+            $parentCategory = Category::all()->where('id', $request->category);
+            $data['parent'] = $parentCategory;
+            $data['subCategories'] = Category::all()->where('parent_id', $request->category);
+            return view('adverts.createSub', $data);
+        }else{
+            return redirect()->route('advert.createTemplate')->with('message', 'Choose a category');
+        }
 
+
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -61,10 +86,6 @@ class AdvertController extends Controller
      */
     public function imageUp(){
         return view('testing.file');
-    }
-    public function store2(Request $request)
-    {
-        $request->logo->store('logos');
     }
     public function store(Request $request)
     {
@@ -95,6 +116,15 @@ class AdvertController extends Controller
     public function show(Advert $advert)
     {
        $data['advert'] = $advert;
+//       dd($advert->cat_id);
+        dd($advert->cat_id);
+       $subCategory = Category::all()->where('id', $advert->cat_id)->first();
+       dd($subCategory);
+       $category = Category::all()->where('id', $subCategory->parent_id)->first();
+//       $secondSub = Category::all()->where('id',)
+
+       $data['sub'] = $subCategory->title;
+       $data['cat'] = $category->title;
        $data['comments'] = Comment::all();
        $data['users'] = User::all();
        return view('adverts.single', $data);
@@ -128,12 +158,7 @@ class AdvertController extends Controller
      */
     public function update(Request $request, $id)
     {
-//       if (!isset($request->att1)){
-//          $request->att1 = 'no';
-//          dd($request->att1);
-//       }
-//        dd($request);
-       //Updates the advert details
+
        $advert = Advert::find($id);
        $advert->title = $request->title;
        $advert->content = $request->content_text;
@@ -142,20 +167,10 @@ class AdvertController extends Controller
        $advert->attribute_set_id = $advert->attribute_set_id;
        $advert->slug = Str::slug($request->title);
        $advert->save();
-       //Save attribute values
-      //id	bigint(20) unsigned Auto Increment
-      //attribute_id	int(11)
-      //advert_id	int(11)
-      //value	varchar(255)
-      //created_at	timestamp NULL
-      //updated_at	timestamp NULL
 
        $attributes = AttributeSetRelationship::all()->where('attribute_set_id',$advert->attribute_set_id);
-//       dd($attributes);
        $counter = 0;
        foreach($attributes as $single){
-//          for ($i = 0; $i <= count($attributes); $i++) {
-//             dd($i);
              $att = new AttributesValue();
              $att->attribute_id = $single->attribute_id;
              $att->advert_id = $advert->id;
@@ -164,36 +179,8 @@ class AdvertController extends Controller
              }else {
                 $att->value = $request->att0;
              }
-//             $value = $request->att . $i;
-////
-////             dd($request);
-//             $value = $request->att[$i];
-//             $att->value = $request->att.$i;
-
-//             if ($value == 0){
-//                $att->value = 'no';
-//             }else{
-//                $att->value = 'yes';
-//             }
-//             dd($value);
-//             foreach ($value as $key => $single){
-////               dd($single);
-//             }
-//             if (!empty($value)){
-//                $value = 'no';
-//                $att->value = $value;
-//             }else{
-//                $att->value = 'yes';
-//             }
-//              dd($request->att1);
-//             $attribuSingle = $request->att . $i;
-//             dd($attribuSingle);
-//             $att->value = $attribuSingle;
              $att->save();
              $counter++;
-//             dd($i);
-//          }
-//          dd($request->att.$counter);
        }
        return redirect()->route('advert.index');
     }

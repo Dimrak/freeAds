@@ -21,6 +21,11 @@ body {
 .fix-width{
     width: 80%;
 }
+@media only screen and (min-width: 768px){
+    .fix-width{
+        width: 30%;
+    }
+}
 @media only screen and (min-width: 1440px){
     .fix-width{
         width: 20%!important;
@@ -55,10 +60,21 @@ main.py-4 {
     margin-right: auto;
     margin-left: auto;
     width: 60%;
-    margin-top: 65px;
+    margin-top: 25px;
     text-align: center;
     /*margin-bottom: 20px;*/
 }
+#latest-ads {
+    margin-right: auto;
+    margin-left: auto;
+    width: 60%;
+    text-align: center;
+}
+/*@media only screen and (min-width:1024px) {*/
+/*    .custom-width-latest {*/
+/*        width: 20%;*/
+/*    }*/
+/*}*/
 #categoryIndex{
     /*margin: 0 auto;*/
     margin-right: auto;
@@ -120,6 +136,32 @@ span{
 }
 .adverts-item{
 
+}
+
+.custom-bg{
+    background-color: #296a9e82 !important;
+    /*height: 150px!important;*/
+}
+.navbar-bg{
+     background-color: rgba(217,200,57,0.8);
+}
+/*Recent adverts*/
+.recent-adverts-div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.recent-adverts-div li{
+    font-size: 0.8em;
+}
+.text-custom{
+    margin: 0 auto;
+}
+.img-latest{
+    width: 100px;
 }
 
 @media only screen and (min-width: 720px) {
@@ -311,4 +353,11 @@ footer p {
 }
 .count-hide{
     display: none;
+}
+.foto-hover {
+    /*background-color: black;*/
+    /*padding:0px 10px;*/
+}
+.foto-hover:hover {
+    /*border: 2px solid #272023;*/
 }

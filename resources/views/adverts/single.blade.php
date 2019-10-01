@@ -3,6 +3,14 @@
 @section('content')
 
 <div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-3 mt-2 w-75 mr-auto ml-auto">
+            <li class="breadcrumb-item"><a href="{{route('category.index')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{route('category.show', $cat)}}">{{ucfirst($cat)}}</a></li>
+            <li class="breadcrumb-item"><a href="{{route('category.showSub', $sub)}}">{{ucfirst($sub)}}</a></li>
+{{--            <li class="breadcrumb-item"><a href="{{route('category.showSubSub', $secondSub->slug)}}">{{ucfirst($secondSub->slug)}}</a></li>--}}
+        </ol>
+    </nav>
     <div class="card mb-3 mr-auto ml-auto mt-3 border-2 border-dark p-2" style="max-width: 600px;">
         <div class="row no-gutters">
             <div class="col-md-4 border-primary">
@@ -22,7 +30,7 @@
             <div class="card-body">
 
                 @foreach($advert->comments as $comment)
-{{--                    <h5 class="card-title">{{$comment->user->name}}</h5>--}}
+                    <h5 class="card-title">{{$comment->user->name}}</h5>
                     <p class="card-text">{{$comment->content}}</p>
                 @endforeach
             {{--</div>--}}

@@ -29,25 +29,35 @@ Route::get('advert/chooseCateg', 'AdvertController@chooseCateg')->name('advert.c
 Route::get('advert/create/{id}', 'AdvertController@create')->name('advert.create');
 Route::post('/advert/{id}', 'AdvertController@disable')->name('advert.disable');
 Route::delete('/advert/{id}', 'AdvertController@destroy')->name('advert.destroy');
+Route::get('/advert/store2/', 'AdvertController@store2')->name('advert.store2');
 
+//Ajax search
+//Route::get('search', 'SearchController@index')->name('search');
+//Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
+
+Route::get('search', 'SearchController@index')->name('search');
+Route::get('search/action', 'SearchController@action')->name('search.action');
 
 
 Route::get('admin/adverts', 'AdminController@adverts')->name('admin.adverts');
 Route::get('admin/categories', 'AdminController@categories')->name('admin.categories');
 Route::get('admin/attributes', 'AdminController@attributes')->name('admin.attributes');
-//Route::post('attributes/storeAttSet', 'AttributeController@storeAttSet')->name('attributes.storeAttSet');
 Route::resource('attribute', 'AttributeController');
 Route::resource('attributeSetRela', 'AttributeSetRelaController');
 Route::get('category/sub/{subCategory}', 'CategoryController@showSub')->name('category.showSub');
 Route::get('category/sub/type/{secondSub}', 'CategoryController@showSubSub')->name('category.showSubSub');
-//Route::get('category/show/{slug}/{slug}', 'CategoryController@show')->name('category.subcategory');
+
+
+Route::get('advert/createTemplate', 'AdvertController@createTemplate')->name('advert.createTemplate');
+Route::get('advert/createSub', 'AdvertController@createSub')->name('advert.createSub');
+Route::get('advert/create', 'AdvertController@create')->name('advert.create');
+
 
 Route::resource('advert','AdvertController');
 Route::resource('category','CategoryController');
 Route::resource('city','CityController');
 Route::resource('comment','CommentController');
 Route::resource('showAll','CategoryController');
-Route::resource('search','SearchController');
 Route::resource('admin','AdminController');
 Route::resource('message','MessageController');
 

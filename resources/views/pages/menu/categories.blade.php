@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <ul class="navbar-nav mr-auto">
+{{--<nav class="navbar navbar-expand-lg navbar-light bg-light">--}}
+    {{--<ul class="navbar-nav mr-auto">--}}
         {{--@foreach($categories as $category)--}}
             {{--see if the category has any subcategories and if no extra subcatgories will display just that item with this specifications--}}
             {{--@if(count($category->subCategories) === 0)--}}
@@ -19,8 +19,18 @@
                     {{--@endif--}}
                 {{--</li>--}}
                 {{--@endforeach--}}
-    </ul>
-</nav>
+
+    {{--</ul>--}}
+
+{{--</nav>--}}
+<div class="search w-100 p-2 ">
+    <a href="{{route('advert.createTemplate')}}" class="btn btn-primary my-2 d-inline">Create advert</a>
+
+    <form class="form-inline my-2 my-lg-0 d-inline" action="{{''}}" method="post">
+        <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</div>
 
 
 

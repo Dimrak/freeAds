@@ -21,9 +21,10 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::parents()->active()->get();
-        $adverts = Advert::orderBy('created_at', 'asc')->take(1)->get();
+        $adverts = Advert::orderBy('created_at', 'desc')->take(4)->get();
         $data['categories'] = $categories;
         $data['adverts'] = $adverts;
+//        $data['latestAds'] = $adverts
         $counter = [];
         $data['counter'] = $counter;
         return view('category.index', $data);
