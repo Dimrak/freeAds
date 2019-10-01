@@ -34,7 +34,7 @@
 <body>
     <div id="app" class="">
 
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-bg">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-bg fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                 <img src="http://194.5.157.101/human.png" alt="" style="width: 60px;" class="mr-3 bg-dark rounded">
@@ -72,7 +72,7 @@
             </div>
         </nav>
         <main class="py-4">
-            <div class="container-fluid p-0">
+            <div class="container-fluid p-0" style="margin-top: 91px">
                 {{--<div class="search bg-warning w-100 p-2 border border-dark">--}}
                     {{--<a href="{{route('advert.create')}}" class="btn btn-primary my-2 d-inline">Create advert</a>--}}
 
