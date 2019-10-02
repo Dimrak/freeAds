@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('content')
     <div class="w-100 custom-bg border-bottom border-dark">
-
-        {{--<h5 class="pt-2 mr-auto ml-auto w-25 text-center text-dark">Latest adverts</h5>--}}
-        {{--<div class="card mb-0 d-inline">--}}
-
             <div class="row no-gutters">
                 <div class="col-md-2">
                     <h5 class="pt-2 mr-auto ml-auto text-center text-center mt-5 w-75 font-weight-bolder" style="color: #171516; border-bottom: 2px solid white">Latest adverts</h5>
@@ -24,13 +20,10 @@
 
                     </div>
                 </div>
-
-
             @endforeach
                 <div class="col-md-2"></div>
             </div>
         </div>
-    {{--</div>--}}
         <div class="container">
             <div id="categoryIndexHome" class="flexBox w-75">
                 @foreach($categories as $category)

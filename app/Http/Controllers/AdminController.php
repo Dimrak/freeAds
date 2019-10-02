@@ -41,7 +41,6 @@ class AdminController extends Controller
        $data['users'] = $users;
        $data['types'] = $types;
        return view('admin.message', $data);
-//      return view('admin.message');
     }
 
     /**
@@ -68,7 +67,6 @@ class AdminController extends Controller
     public function sendMessage(Request $request)
     {
 
-//        dd($request->subject);
     }
 
     /**
@@ -79,7 +77,6 @@ class AdminController extends Controller
      */
     public function show($slug)
     {
-//       dd($slug);
         return view('admin.show');
     }
     public function adverts()
@@ -92,16 +89,13 @@ class AdminController extends Controller
     public function attributes()
     {
         $data['att_set'] = AttributeSet::all();
-        $data['attributesRela'] = AttributeSetRelationship::all();
+        $data['attributesRela'] = AttributeSetRelationship::all()->where('active', 1);
         $data['attributes'] = Attribute::all();
-//        dd(Attribute::all());
-//        dd(AttributeSetRelationship::all());
-//        dd(Attribute::all());
         return view('admin.attributes', $data);
     }
    public function categories()
    {
-      $data['categories'] = Category::all();
+      $data['categories'] = Category::all()->where('parent_id', 0);
       return view('admin.categories', $data);
    }
 
@@ -139,13 +133,9 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
-//    public function adminCategories()
-//    {
-//        $data['categories'] = Category::active()->get();
-//        return view('admin.categories', $data);
-//    }
+
     public function adminMessages()
     {
         $users = User::all();

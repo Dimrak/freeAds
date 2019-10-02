@@ -23,9 +23,12 @@
                     <p class="card-text">{!! html_entity_decode($advert->content,ENT_QUOTES, 'UTF-8')!!}</p>
                     <p class="card-text">Price: {{ $advert-> price}} €</p>
                     <p class="card-text"><small class="text-muted">Last change: {{$advert->updated_at}}</small></p>
+                    @foreach($attributes as $single)
+                        <label class="d-inline mr-2" for="{{$single->attributes->name}}">{{ucfirst($single->attributes->name)}}: </label>
+                        <p class="d-inline">{{$single->value}}</p>
+                    @endforeach
                 </div>
             </div>
-
         </div>
             <div class="card-header">Comments</div>
             <div class="card-body">

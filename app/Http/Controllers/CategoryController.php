@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Advert;
+use App\AttributeSet;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -24,7 +25,6 @@ class CategoryController extends Controller
         $adverts = Advert::orderBy('created_at', 'desc')->take(4)->get();
         $data['categories'] = $categories;
         $data['adverts'] = $adverts;
-//        $data['latestAds'] = $adverts
         $counter = [];
         $data['counter'] = $counter;
         return view('category.index', $data);
@@ -40,7 +40,9 @@ class CategoryController extends Controller
        $user = Auth::user();
        if ($user && $user->hasRole('admin')) {
           $categories = Category::all()->where('parent_id', 0);
-//       $adverts = Advert::all();
+          $attribute_set = AttributeSet::all();
+//          dd($attribute_set);
+          $data['att_set'] = $attribute_set;
           $data['categories'] = $categories;
           return view('category.create', $data);
        }else{
@@ -56,12 +58,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+
        $category = new Category();
        $category->title = $request->title;
        $slug = Str::slug($request->title, '-');
        $category->slug = Str::slug($slug);
        $category->image = $request->image;
        $category->parent_id = $request->parent_id;
+       $category->attribute_set_id = $request->attribute;
        $category->save();
        //este back es para mandarle de vuelta
        //rename
@@ -77,14 +81,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-       //Takes all parent categories
-//       $categorySecond = Category::all()->where('id', $category->id);
-       //Select the current parent category
        $data['category'] = $category;
-//       $data['categorySecond'] = $categorySecond;
-       //Takes the id of the current parent
        $data['id'] = $category->id;
-//       dd($data);
        return view('category.single', $data);
     }
     public function showSub(Category $subCategory)
@@ -122,8 +120,6 @@ class CategoryController extends Controller
        $data['firstParent'] = $dataFirst[0];
        $data['secondSub'] = $secondSub;
        $data['id'] = $secondSub->id;
-//       dd($data);
-
        return view('category.second-sub', $data);
     }
 

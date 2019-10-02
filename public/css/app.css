@@ -10808,7 +10808,7 @@ span {
 }
 
 .navbar-bg {
-  background-color: rgba(217, 200, 57, 0.8);
+  background-color: rgba(217, 200, 57, 1);
 }
 
 /*Recent adverts*/
@@ -11061,14 +11061,5 @@ footer p {
 
 .count-hide {
   display: none;
-}
-
-.foto-hover {
-  /*background-color: black;*/
-  /*padding:0px 10px;*/
-}
-
-.foto-hover:hover {
-  /*border: 2px solid #272023;*/
 }
 

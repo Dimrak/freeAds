@@ -11,4 +11,8 @@ class AttributesValue extends Model
         //look into Attribute for the id which belongs to attribute_id
         return $this->hasOne('App\Attribute', 'id', 'attribute_id');
     }
+    public function attributes()
+    {
+        return $this->hasOne('App\Attribute','id', 'attribute_id');
+    }
 }

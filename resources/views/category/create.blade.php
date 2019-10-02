@@ -14,12 +14,10 @@
                     <div class="card-header">Create category</div>
 
                     <div class="card-body">
-                        {{--                        route specified with blade syntax--}}
                         <form method="post" action="{{ route('category.store') }}">
                             @csrf
                             <input type="text" name="title" placeholder="Title" class="form-control mt-1">
                             <input type="text" name="image" class="form-control mt-1" placeholder="image">
-
                             <select name="parent_id" class="form-control mt-1">
                                 <option class="form-control mt-1">Choose a category</option>
                                 <option value="0">New category</option>
@@ -28,6 +26,12 @@
                                 @foreach ($category->subCategories as $subcat)
                                     <option class="" value="{{ $subcat->id }}">{{ $subcat->title}}</option>
                                     @endforeach
+                                @endforeach
+                            </select>
+                            <select name="attribute" id="" class="form-control mt-1">
+                                <option value="0">Choose attribute family</option>
+                                @foreach ($att_set as $set)
+                                    <option value="{{$set->id}}" class="">{{$set->name}}</option>
                                 @endforeach
                             </select>
                             <button class="btn alert-success mt-1">Create</button>

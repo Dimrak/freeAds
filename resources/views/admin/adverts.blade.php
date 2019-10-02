@@ -52,9 +52,9 @@
                                                     href="{{route('advert.edit', $advert->id)}}"
                                                     class="text-decoration-none">Edit</a></button>
                                         </div>
-{{--                                        <form action="{{action('AdvertController@destroy',['id'=>$advert->id])}}"--}}
-{{--                                        <form action="{{route('AdvertController@disable', $advert->id)}}"--}}
-                                              method="post">
+                                        {{--<form action="{{action('AdvertController@destroy',['id'=>$advert->id])}}"--}}
+                                        {{--<form action="{{route('AdvertController@disable', $advert->id)}}"--}}
+                                              {{--method="post">--}}
                                             @method('DELETE')
                                             @csrf
                                             <input type="submit" class="btn btn-sm p-1 bg-danger text-white mt-3 text-center" value="Disable">

@@ -5,17 +5,16 @@
 
     <div class="container mt-5">
         <div class="row justify-content-center">
-{{--            <div class="card-header">{{ $title }}</div>--}}
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header"><small class="bg-success p-1 mr-1 rounded">New</small>{{ $title }} </div>
+                    <div class="card-header">
+                        <small class="bg-success p-1 mr-1 rounded">New</small>{{ $title }} </div>
                     <div class="card-body">
                         <form method="post" action=" {{ route('advert.store') }}" enctype="multipart/form-data">
                             @csrf
                             <select name="categoryFinal" id="">
                                 <option class="form-control mt-1">Choose the type</option>
                                 @foreach($secondSubCategories as $cat)
-{{--                                    {{dd($cat->id)}}--}}
                                     <option value=" {{ $cat->id }}">{{$cat->title }}</option>
                                 @endforeach
                             </select>
@@ -31,17 +30,19 @@
                                     <option value=" {{ $city->id }}">{{ $city->name }}</option>
                                 @endforeach
                             </select>
-                            @foreach($attributeSetRel as $single)
-                                <label for="{{$single->attributes->name}}">{{ucfirst($single->attributes->name)}}</label><br>
-                                <input type="radio" name="att{{$single->attribute_id}}" value="yes">yes
-                                <input type="radio" class="" name="att{{$single->attribute_id}}" value="no">no<br>
-                            @endforeach
-                            <input type="text" name="categorySub" value="{{$category_id}}">
+                            <div class="attributes d-block mt-2">
+                                @foreach($attributeSetRel as $single)
+                                    <label class="bg-info p-2 rounded" for="{{$single->attributes->name}}">{{ucfirst($single->attributes->name)}}</label>
+                                    <input type="radio" name="att{{$single->attribute_id}}" value="yes">yes
+                                    <input type="radio" class="" name="att{{$single->attribute_id}}" value="no">no<br>
+                                @endforeach
+                            </div>
+                            <input type="hidden" name="categorySub" value="{{$category_id}}">
                             <button class="btn alert-success mt-1">Create</button>
                         </form>
                     </div>
                 </div>
-        </div>
+            </div>
         </div>
     </div>
 @endsection

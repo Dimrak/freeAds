@@ -34,16 +34,18 @@ Route::get('/advert/store2/', 'AdvertController@store2')->name('advert.store2');
 //Ajax search
 //Route::get('search', 'SearchController@index')->name('search');
 //Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
-
-Route::get('search', 'SearchController@index')->name('search');
-Route::get('search/action', 'SearchController@action')->name('search.action');
+Route::get('search/searching/', 'SearchController@searching')->name('search.searching');
+//Route::get('search/index', 'SearchController@index')->name('search');
+//Route::get('search/action', 'SearchController@action')->name('search.action');
 
 
 Route::get('admin/adverts', 'AdminController@adverts')->name('admin.adverts');
 Route::get('admin/categories', 'AdminController@categories')->name('admin.categories');
 Route::get('admin/attributes', 'AdminController@attributes')->name('admin.attributes');
 Route::resource('attribute', 'AttributeController');
+//Route::get('attributeSetRela/update', 'AttributeSetRelaController@update')->name('attributeSetRela.update');
 Route::resource('attributeSetRela', 'AttributeSetRelaController');
+Route::get('attributeSetRela/edit/{id}', 'AttributeSetRelaController@edit')->name('AttributeSetRela.edit');
 Route::get('category/sub/{subCategory}', 'CategoryController@showSub')->name('category.showSub');
 Route::get('category/sub/type/{secondSub}', 'CategoryController@showSubSub')->name('category.showSubSub');
 

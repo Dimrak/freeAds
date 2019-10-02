@@ -45,6 +45,11 @@ class Advert extends Model
        return $this->hasOne('App\User', 'id', 'user_id');
    }
 
+   public function findValues()
+   {
+        return $this->hasMany('App\AttributesValue', 'advert_id', 'id');
+   }
+
 //   public function
 //   public function category()
 //   {

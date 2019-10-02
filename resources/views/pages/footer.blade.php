@@ -1,26 +1,6 @@
 <footer class="text-center">
-    <div class="d-inline-flex text-white text-center mr-auto ml-auto w-25 border border-warning font-weight-bolder">
-        <h5>
-            F
-        </h5>
-        <h5>
-            R
-        </h5>
-        <h5>
-            E
-        </h5>
-        <h5>
-            E
-        </h5>
-        <h5>
-            A
-        </h5>
-        <h5>
-            D
-        </h5>
-        <h5>
-            S
-        </h5>
+    <div class="text-white text-center mr-auto ml-auto w-25 font-weight-bolder">
+        <p class="d-inline">FreeAds - copyright - <a target="_blank" href="https://github.com/Dimrak/">github.com/Dimrak</a></p>
     </div>
 </footer>
 
