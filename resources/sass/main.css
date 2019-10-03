@@ -297,13 +297,13 @@ span{
     font-size: 1.2em;
 }
 .adminPanel{
-    width: 50%;
+    /*width: 65%;*/
 }
 #message {
     min-height: 200px;
 }
 .categoryPanel{
-    width: 40%;
+    width: 50%;
 }
 /*span {*/
     /*width;*/

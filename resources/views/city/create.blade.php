@@ -2,7 +2,10 @@
 {{----}}
 
 @section('content')
-    <div class="container">
+    @hasrole('admin')
+    @include('admin.nav-admin');
+    @endhasrole
+    <div class="container mt-3">
         @if(session()->has('message'))
             <div class="alert alert-success w-25 d-block mr-auto ml-auto text-center" role="alert">
                 {{session()->get('message')}}

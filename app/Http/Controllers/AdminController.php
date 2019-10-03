@@ -8,10 +8,12 @@ use App\AttributeSet;
 use App\AttributeSetRelationship;
 use App\Category;
 use App\Message;
+use App\City;
 use App\User;
 use App\MessageType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -22,9 +24,25 @@ class AdminController extends Controller
      */
     public function index()
     {
-       $user = Auth::user();
+        $from = Carbon::now();//hoy
+        $to = Carbon::now();//hoy
+        $monday = $from->startOfWeek();//hasta el dia 6(domingo)
+        $sunday = $to->startOfWeek()->addDays(6);//hasta el dia 6(domingo)
+
+//        $to = $from->startOfWeek()->addDays(6);//hasta el dia 6(domingo)
+        $adverts = Advert::all()->whereBetween('created_at', [$monday, $sunday]);
+        $users = User::all()->whereBetween('created_at', [$monday, $sunday]);
+        $data['adverts'] = $adverts;
+        $data['categories'] = Category::all();
+        $data['users'] = $users;
+        $data['cities'] = City::all();
+        foreach ($data as $weekData){
+
+        }
+        $user = Auth::user();
+
        if ($user->hasRole('admin')) {
-          return view('admin.index');
+          return view('admin.index', $data);
        }else{
           echo "Access denied";
        }

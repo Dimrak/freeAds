@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    @include('admin.nav-admin');
     <section class="mb-4">
         <div class="album py-5 bg-light">
             <div class="container">

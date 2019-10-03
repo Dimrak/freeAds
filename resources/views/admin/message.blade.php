@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container adminPanel">
+    @include('admin.nav-admin');
+    <div class="container adminPanel mt-3">
         <form method="post" action=" {{ route('admin.store') }}" enctype="multipart/form-data">
         @csrf
 {{--            @method('POST')--}}

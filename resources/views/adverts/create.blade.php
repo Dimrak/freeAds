@@ -2,10 +2,12 @@
 {{----}}
 
 @section('content')
-
-    <div class="container mt-5">
+    @hasrole('admin')
+    @include('admin.nav-admin');
+    @endhasrole
+    <div class="container mt-3">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">
                         <small class="bg-success p-1 mr-1 rounded">New</small>{{ $title }} </div>

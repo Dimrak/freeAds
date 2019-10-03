@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
     <div class="w-100 custom-bg border-bottom border-dark">
             <div class="row no-gutters">
                 <div class="col-md-2">
@@ -48,5 +49,16 @@
                     </div>
                 @endforeach
             </div>
+<!--            --><?php
+//            $startime = microtime(true);
+//            $endtime = microtime(true);
+//            for($i = 0; $i < 1000; $i++){
+//                print "Hello world";
+//            }
+//            echo $endtime - $startime;
+////            echo $endtime;
+////            echo $startime;
+//
+//            ?>
         </div>
 @endsection

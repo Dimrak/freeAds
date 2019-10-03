@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 {{--Remove attribute--}}
+@include('admin.nav-admin');
+
         <div class="row w-75 h-25 text-dark mr-auto ml-auto mb-2">
 
             <div class="mt-2 rounded p-3 d-block border border-dark attributes-assign text-white bg-danger">

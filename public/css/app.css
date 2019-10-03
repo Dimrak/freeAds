@@ -10995,7 +10995,7 @@ span {
 }
 
 .adminPanel {
-  width: 50%;
+  /*width: 65%;*/
 }
 
 #message {
@@ -11003,7 +11003,7 @@ span {
 }
 
 .categoryPanel {
-  width: 40%;
+  width: 50%;
 }
 
 /*span {*/

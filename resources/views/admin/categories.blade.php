@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container adminPanel categoryPanel w-25 pt-4">
+    @include('admin.nav-admin');
+
+    <div class="container adminPanel categoryPanel pt-3">
 
         <div class="list-group">
             <a href="#" class="list-group-item list-group-item-action active">Categories</a>
@@ -25,9 +27,7 @@
         <a class="badge badge-success p-2" href="{{route('admin.index')}}">Back admin page</a>
         <a class="badge badge-warning p-2" href="{{route('category.create')}}">Create category</a>
     </div>
-    <div id="explanation" class="container bg-dark w-25">
 
-    </div>
 
 
 @endsection

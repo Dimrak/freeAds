@@ -2,6 +2,9 @@
 {{----}}
 
 @section('content')
+    @hasrole('admin')
+    @include('admin.nav-admin');
+    @endhasrole
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">

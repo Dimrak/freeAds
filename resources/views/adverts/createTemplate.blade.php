@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('content')
-
-    <div class="container">
+    {{--    @hasrole('admin')--}}
+    {{--    @include('admin.nav-admin');--}}
+    {{--    @endhasrole--}}
+    <div class="container pt-2">
         @if(session()->has('message'))
             <div class="alert alert-warning border border-dark w-25 rounded ml-auto mr-auto mt-2" role="alert">
                 {{session()->get('message')}}
@@ -25,5 +27,8 @@
     </div>
     <div class="text-center p-2 mt-5">
         <p class="mt-5 text-center p-2 small rounded bg-info d-inline">Step 1 of 3</p>
+    </div>
+    <div class="text-center mt-5">
+        <a class="badge badge-success p-2 mt-2" href="{{route('admin.index')}}">Back admin page</a>
     </div>
 @endsection
