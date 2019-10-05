@@ -7,6 +7,13 @@
     @endhasrole
     <div class="container mt-3">
         <div class="row justify-content-center">
+            @if ($errors->any())
+                <div class="alert alert-danger w-75 d-block mr-auto ml-auto" role="alert">
+                    @foreach ($errors->all() as $error)
+                        <p>{{$error}}</p>
+                    @endforeach
+                </div>
+            @endif
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">

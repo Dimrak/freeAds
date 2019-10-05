@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 
-class StoreCity extends FormRequest
+class CategoryStore extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,18 +26,7 @@ class StoreCity extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:50|unique:cities',
-        ];
-    }
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'name.required' => 'Too long!',
+            'title' => 'required|max:50|unique:categories',
         ];
     }
 }

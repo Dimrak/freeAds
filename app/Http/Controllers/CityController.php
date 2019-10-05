@@ -38,9 +38,13 @@ class CityController extends Controller
      */
     public function store(StoreCity $request)
     {
+//        $validatedData = $request->validate([
+//            'cityName' => 'required:unique:cities|max:50',
+////            'body' => 'required',
+//        ]);
         $validated = $request->validated();
         $city = new City();
-        $city->name = $validated['cityName'];
+        $city->name = $validated['name'];
         $city->save();
         return redirect()->route('city.create')->with('message', 'City added');
     }

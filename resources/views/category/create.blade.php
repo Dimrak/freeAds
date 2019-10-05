@@ -11,6 +11,14 @@
             {{session()->get('message')}}
 
             @endif
+            @if ($errors->any())
+                {{--            {{dd($errors)}}--}}
+                <div class="alert alert-danger w-75 d-block mr-auto ml-auto" role="alert">
+                    @foreach ($errors->all() as $error)
+                        <p>{{$error}}</p>
+                    @endforeach
+                </div>
+            @endif
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">

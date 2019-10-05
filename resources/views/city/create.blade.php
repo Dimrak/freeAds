@@ -5,7 +5,6 @@
     @hasrole('admin')
     @include('admin.nav-admin');
     @endhasrole
-        <h5>Guille apsirenk maike, dabar!!!!</h5>
     <div class="container mt-3">
         @if(session()->has('message'))
             <div class="alert alert-success w-25 d-block mr-auto ml-auto text-center" role="alert">
@@ -14,20 +13,16 @@
         @endif
         @if ($errors->any())
 {{--            {{dd($errors)}}--}}
-                <div class="alert alert-info w-25 d-block mr-auto ml-auto" role="alert">
+                <div class="alert alert-danger w-75 d-block mr-auto ml-auto" role="alert">
                     @foreach ($errors->all() as $error)
                         <p>{{$error}}</p>
                         @endforeach
                 </div>
             @endif
-
-            <label for="title">Post Title</label>
-
-            <input id="title" type="text" class="@error('title') is-invalid @enderror">
-
-            @error('cityName')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
+{{--            @error('cityName')--}}
+{{--            {{dd($message  )}}--}}
+{{--            <div class="alert alert-danger w-25 mr-auto ml-auto" role="alert">{{ $message }}</div>--}}
+{{--            @enderror--}}
 
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -36,7 +31,7 @@
                     <div class="card-body">
                         <form method="post" action=" {{ route('city.store') }}">
                             @csrf
-                            <input type="text" name="cityName" placeholder="Title" class="form-control mt-1">
+                            <input type="text" name="name" placeholder="Title" class="form-control mt-1" autofocus>
 
                             <button class="btn alert-success mt-1">Create</button>
                         </form>

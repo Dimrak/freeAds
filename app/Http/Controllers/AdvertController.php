@@ -98,15 +98,14 @@ class AdvertController extends Controller
 
     public function store(StoreAdvert $request)
     {
+        $validated = $request->validated();
         $advert = new Advert();
         //Advert table save
 //        $validatedData = $request->validate([
 //            'title' => 'required|unique:posts|max:255',
 //            'body' => 'required',
 //        ]);
-        $validated = $request->validated();
-        dd($validated);
-        $advert->title = $request->title;
+        $advert->title = $validated('title');
         $advert->content = $request->content_text;
         $advert->cat_id = $request->categoryFinal;
         $advert->image = $request->image;

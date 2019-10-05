@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreAdvert extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreAdvert extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -24,8 +25,7 @@ class StoreAdvert extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|unique:posts|max:255',
-            'content_text' => 'required',
+            'title' => 'required|max:50|unique:adverts',
         ];
     }
 }

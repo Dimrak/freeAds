@@ -6,6 +6,7 @@ use App\Advert;
 use App\AttributeSet;
 use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryStore;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 //use Illumintate\Http\RedirectResponse;
@@ -56,11 +57,11 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryStore $request)
     {
-
-       $category = new Category();
-       $category->title = $request->title;
+        $validated = $request->validated();
+        $category = new Category();
+       $category->title = $validated('title');
        $slug = Str::slug($request->title, '-');
        $category->slug = Str::slug($slug);
        $category->image = $request->image;
