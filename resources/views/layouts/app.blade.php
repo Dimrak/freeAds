@@ -11,7 +11,8 @@
 
 {{--    Del ajax--}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript" src="{{URL::asset('js/email.js')}}"></script>
+    <script type="text/javascript" src="{{URL::asset('/resources/js/email.js')}}"></script>
+
     {{--<script type="text/javascript" src="{{URL::asset('js/yourapp.js')}}"></script>--}}
 
 
@@ -24,12 +25,12 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ URL::to('js/ajax-search.js') }}"></script>
+    <script src="{{ URL::to('~/js/ajax-search.js') }}"></script>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
+    {{--<link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 

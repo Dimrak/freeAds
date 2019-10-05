@@ -242,10 +242,10 @@ span{
         width: 220px;
         height: 180px;
     }
-    .card-img {
-        width: 400px;
-        height: 300px;
-    }
+    /*.card-img {*/
+        /*width: 400px;*/
+        /*height: 300px;*/
+    /*}*/
     .grid-item{
         max-width: 400px;
     }
@@ -350,4 +350,9 @@ footer p {
 }
 .count-hide{
     display: none;
+}
+
+/*Register*/
+.incorrect{
+    border: 1px solid indianred;
 }
