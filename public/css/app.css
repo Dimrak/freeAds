@@ -10763,22 +10763,12 @@ main.py-4 {
   height: 150px;
 }
 
-.card-img {
-  max-width: 300px;
-  height: 200px;
-  border: 2px solid white;
-  background-size: cover;
-  /*padding: 15px;*/
-}
-
 span {
-  /*background-color: rgba(15,15,15,0.2);*/
   font-size: 1.4em;
   font-weight: 600;
   color: white;
   padding-top: 26%;
   margin-bottom: 30px;
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -10802,9 +10792,11 @@ span {
   border: 1px solid white;
 }
 
+/*CATEGORY INDEX*/
+
 .custom-bg {
   background-color: #296a9e82 !important;
-  height: 150px !important;
+  /*height: 150px!important;*/
 }
 
 .navbar-bg {
@@ -10867,6 +10859,7 @@ span {
 
   .card-img {
     margin-top: 20px;
+    height: 50%;
   }
 
   .card-img-small {
@@ -10995,7 +10988,13 @@ span {
 }
 
 .adminPanel {
-  /*width: 65%;*/
+  width: 100%;
+}
+
+@media only screen and (min-width: 720px) {
+  .adminPanel {
+    width: 70%;
+  }
 }
 
 #message {

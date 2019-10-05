@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <nav class="pt-4 col-md-2 d-none d-md-block sidebar pb-2 h-50" style="background-color: rgba(164,159,149,0.49)">
+        <nav class="pt-4 col-md-2 d-md-block sidebar pb-2 h-50" style="background-color: rgba(164,159,149,0.49)">
             <div class="sidebar-sticky">
                 <h4 class=""><mark class="rounded pr-2 pl-2"><a class="text-black text-decoration-none" href="{{route('admin.index')}}">Admin options</a></mark></h4>
                 <ul class="nav flex-column">
@@ -36,4 +36,6 @@
                 </ul>
             </div>
         </nav>
+{{--    </div>--}}
+{{--</div>--}}
 

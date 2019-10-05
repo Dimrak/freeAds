@@ -3,7 +3,7 @@
 @section('content')
     @role('admin')
     @include('admin.nav-admin');
-    <div class="container adminPanel">
+    <div class="container adminPanel mt-3">
         @if(session()->has('message'))
         <div class="alert alert-success" role="alert">
             {{session()->get('message')}}
@@ -14,9 +14,10 @@
                 <p class="lead">Week statistics;</p>
                 <hr class="my-4">
                 <p>There are a total of {{count($adverts)}} new adverts</p>
-{{--                <p>There are a total of {{count($categories)}} categories</p>--}}
-                <p>There are a total of {{count($users)}} new users registered</p>
-{{--                <p>There are a total of {{count($cities)}} cities registered</p>--}}
+                <p>There are a total of {{count($users)}} new users registered
+                <div class="w-50 mr-auto ml-auto ">
+                    {!! $chartjs->render() !!}
+                </div>
             </div>
 
 {{--            <div class="list-group">--}}
@@ -31,11 +32,9 @@
 {{--                <a href="{{route('admin.categories')}}" class="list-group-item list-group-item-action">All Categories</a>--}}
 {{--                <a href="{{route('admin.attributes')}}" class="list-group-item list-group-item-action">Attributes</a>--}}
 {{--            </div>--}}
-            <a class="badge badge-success p-2 mt-2" href="{{route('category.index')}}">Back home page</a>
-
-    </div>
+    <a class="badge badge-success p-2 mt-2" href="{{route('category.index')}}">Back home page</a>
     @endrole
-
+    </div>
 
 
 
@@ -43,3 +42,4 @@
 
 
 @endsection
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.2/Chart.min.js"></script>

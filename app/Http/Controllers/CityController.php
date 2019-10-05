@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCity;
 use App\City;
 
 class CityController extends Controller
@@ -35,12 +36,13 @@ class CityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCity $request)
     {
-       $city = new City();
-       $city->name = $request->cityName;
-       $city->save();
-       return redirect()->route('city.create')->with('message', 'City added');
+        $validated = $request->validated();
+        $city = new City();
+        $city->name = $validated['cityName'];
+        $city->save();
+        return redirect()->route('city.create')->with('message', 'City added');
     }
 
     /**

@@ -24,27 +24,87 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $from = Carbon::now();//hoy
-        $to = Carbon::now();//hoy
-        $monday = $from->startOfWeek();//hasta el dia 6(domingo)
-        $sunday = $to->startOfWeek()->addDays(6);//hasta el dia 6(domingo)
-
-//        $to = $from->startOfWeek()->addDays(6);//hasta el dia 6(domingo)
+        $from = Carbon::now();//Hoy 10-03
+        $from2 = Carbon::now();//Hoy 10-03
+        $from3 = Carbon::now();//Hoy 10-03
+        $from4 = Carbon::now();//Hoy 10-03
+        $from5 = Carbon::now();//Hoy 10-03
+        $from6 = Carbon::now();//Hoy 10-03
+        $from7 = Carbon::now();//Hoy 10-03
+        $monday = $from->startOfWeek()->toDateString();//hasta el dia 6(domingo)
+        $tuesday = $from2->startOfWeek()->addDays(1)->toDateString();
+        $wed = $from3->startOfWeek()->addDays(2)->toDateString();
+        $thur = $from4->startOfWeek()->addDays(3)->toDateString();
+        $fri = $from5->startOfWeek()->addDays(4)->toDateString();
+        $sat = $from6->startOfWeek()->addDays(5)->toDateString();
+        $sunday = $from7->startOfWeek()->addDays(6)->toDateString();
+//        dd($monday);
+//        $sunday = $to->startOfWeek()->addDays(6);//hasta el dia 6(domingo)
+        //obtener el numero de adverts creados durante current semana y la anterior
         $adverts = Advert::all()->whereBetween('created_at', [$monday, $sunday]);
+        $mondayAds = [];
+        $tuesdayAds = [];
+        $wedAds = [];
+        $thurAds = [];
+        foreach ($adverts as $advert){
+
+            if ($advert->created_at == $monday){
+                array_push($mondayAds, $advert);
+            }
+            elseif($advert->created_at === $tuesday){
+                array_push($tuesdayAds, $advert);
+            }
+            elseif($advert->created_at == $wed){
+                array_push($wedAds,$advert);
+            }
+            elseif ($advert->created_at == $thur){
+                array_push($thurAds,$advert);
+            }
+        }
+        $chartjs = app()->chartjs
+            ->name('lineChartTest')
+            ->type('line')
+            ->size(['width' => 400, 'height' => 200])
+            ->labels(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
+            ->datasets([
+                [
+                    "label" => "This week adverts",
+                    'backgroundColor' => "rgba(38, 185, 154, 0.31)",
+                    'borderColor' => "rgba(38, 185, 154, 0.7)",
+                    "pointBorderColor" => "rgba(38, 185, 154, 0.7)",
+                    "pointBackgroundColor" => "rgba(38, 185, 154, 0.7)",
+                    "pointHoverBackgroundColor" => "#fff",
+                    "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                    'data' => [12,15,2,8,5,15,2],
+                ],
+                [
+                    "label" => "Last week adverts",
+                    'backgroundColor' => "rgba(38, 185, 154, 0.31)",
+                    'borderColor' => "rgba(38, 185, 154, 0.7)",
+                    "pointBorderColor" => "rgba(38, 185, 154, 0.7)",
+                    "pointBackgroundColor" => "rgba(38, 185, 154, 0.7)",
+                    "pointHoverBackgroundColor" => "#fff",
+                    "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                    'data' => [count($adverts)],
+                ]
+            ]);
+
         $users = User::all()->whereBetween('created_at', [$monday, $sunday]);
         $data['adverts'] = $adverts;
         $data['categories'] = Category::all();
         $data['users'] = $users;
         $data['cities'] = City::all();
-        foreach ($data as $weekData){
-
-        }
         $user = Auth::user();
-
-       if ($user->hasRole('admin')) {
-          return view('admin.index', $data);
+       if ($user !== null) {
+          if ($user->hasRole('admin')) {
+             return view('admin.index', $data, compact('chartjs'));
+          } else {
+             return abort('403');
+//             return redirect()->route('category.index')->with('message', 'Access denied');
+          }
        }else{
-          echo "Access denied";
+          return abort('401');
+//          return view('category.index')->with('message','Access denied');
        }
     }
     /**
@@ -99,8 +159,15 @@ class AdminController extends Controller
     }
     public function adverts()
     {
+
        $data['advertsAct'] = Advert::all()->where('active', 1);
+       $data['adverts'] = Advert::all();
        $data['advertsDis'] = Advert::all()->where('active', 0);
+       $categories = Category::parents()->active()->get();
+       $counter = [];
+       $data['counter'] = $counter;
+//       $adverts = Advert::orderBy('created_at', 'desc')->take(4)->get();
+       $data['categories'] = $categories;
        return view('admin.adverts', $data);
     }
 

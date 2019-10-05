@@ -8,6 +8,7 @@ use App\AttributesValue;
 use App\Category;
 use App\Comment;
 use App\City;
+use App\Http\Requests\StoreAdvert;
 use App\User;
 use App\Mail\NewAdvert;
 use App\AttributeSet;
@@ -95,10 +96,16 @@ class AdvertController extends Controller
         return view('testing.file');
     }
 
-    public function store(Request $request)
+    public function store(StoreAdvert $request)
     {
         $advert = new Advert();
         //Advert table save
+//        $validatedData = $request->validate([
+//            'title' => 'required|unique:posts|max:255',
+//            'body' => 'required',
+//        ]);
+        $validated = $request->validated();
+        dd($validated);
         $advert->title = $request->title;
         $advert->content = $request->content_text;
         $advert->cat_id = $request->categoryFinal;

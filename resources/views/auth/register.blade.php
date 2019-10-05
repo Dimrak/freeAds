@@ -24,7 +24,7 @@
                                 @enderror
                             </div>
                         </div>
-
+{{--                            {{dd($errors)}}--}}
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -38,7 +38,6 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
@@ -52,7 +51,7 @@
                                 @enderror
                             </div>
                         </div>
-
+{{--                        {{dd($errors)}}--}}
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
@@ -74,4 +73,11 @@
         </div>
     </div>
 </div>
+{{--<script>--}}
+    {{--var email = document.getElementById('email');--}}
+    {{--email.addEventListener('click', focus);--}}
+    {{--function focus(){--}}
+        {{--email.style.focus = true;--}}
+    {{--}--}}
+{{--</script>--}}
 @endsection
