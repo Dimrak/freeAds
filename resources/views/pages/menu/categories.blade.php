@@ -23,7 +23,7 @@
     {{--</ul>--}}
 
 {{--</nav>--}}
-<div class="search w-100 p-2 ">
+<div class="search w-100 p-2 tablet-view">
     <a href="{{route('advert.createTemplate')}}" class="btn btn-primary my-2 d-inline-block">Create advert</a>
 
     <form class="form-inline my-2 my-lg-0 d-inline" action="{{route('search.searching')}}" method="get">

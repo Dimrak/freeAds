@@ -15,9 +15,9 @@
                 <hr class="my-4">
                 <p>There are a total of {{count($adverts)}} new adverts</p>
                 <p>There are a total of {{count($users)}} new users registered
-                <div class="w-50 mr-auto ml-auto ">
-                    {!! $chartjs->render() !!}
-                </div>
+                {{--<div class="w-50 mr-auto ml-auto ">--}}
+                    {{--{!! $chartjs->render() !!}--}}
+                {{--</div>--}}
             </div>
 
 {{--            <div class="list-group">--}}
@@ -42,4 +42,4 @@
 
 
 @endsection
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.2/Chart.min.js"></script>
+{{--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.2/Chart.min.js"></script>--}}

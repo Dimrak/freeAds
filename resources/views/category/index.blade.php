@@ -5,13 +5,13 @@
             {{session()->get('message')}}
         </div>
     @endif
-    <div class="w-100 custom-bg border-bottom border-dark">
+    <div class="w-100 custom-bg border-bottom border-dark d-none latest-adverts">
             <div class="row no-gutters">
                 <div class="col-md-2">
-                    <h5 class="pt-2 mr-auto ml-auto text-center text-center mt-5 w-75 font-weight-bolder" style="color: #171516; border-bottom: 2px solid white">Latest adverts</h5>
+                    <h5 class="pt-2 mr-auto ml-auto text-center text-center mt-5 w-75 font-weight-bolder">Latest adverts</h5>
                 </div>
             @foreach($adverts as $advert)
-                <div class="col-md-1 foto-hover text-center" style="border-top: 2px solid indianred;">
+                <div class="col-md-1 foto-hover text-center">
                     <a href="{{route('advert.show', $advert->slug)}}">
                     <img src="{{$advert->image}}" class="img-fluid card-img w-100 foto-hover" alt="{{$advert->slug}}">
                     <p class="card-text"><small class="text-muted">{{$advert->updated_at}}</small></p>
@@ -28,7 +28,7 @@
                 <div class="col-md-2"></div>
             </div>
         </div>
-        <div class="container">
+        <div class="container pt-2">
             <div id="categoryIndexHome" class="flexBox w-75">
                 @foreach($categories as $category)
                     <div class="fix-width m-2 mb-4">

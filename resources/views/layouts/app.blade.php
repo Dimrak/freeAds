@@ -8,31 +8,26 @@
     <title>{{ config('app.namechanged', 'FreeAds') }}</title>
     <!-- include summernote css/js -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-
 {{--    Del ajax--}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="{{URL::asset('/resources/js/email.js')}}"></script>
 
-    {{--<script type="text/javascript" src="{{URL::asset('js/yourapp.js')}}"></script>--}}
-
-
-    {{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.10.6/jquery.typeahead.js"></script>--}}
-{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />--}}
-{{--    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>--}}
-{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>--}}
-{{--    --}}
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ URL::to('~/js/ajax-search.js') }}"></script>
+
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{--<link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">--}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{{--    alternative to fontawesome--}}
+    <script defer src="https://friconix.com/cdn/friconix.js"></script>
+
+    {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">--}}
 </head>
+
 
 
 <body>
@@ -72,6 +67,24 @@
 
                         @endguest
                     </ul>
+                    @if(Auth::user())
+                    <a href="{{route('message.index')}}" id="navbarDropdown" role="button" class="nav-link">
+                        <h3 class="badge text-dark mt-2">
+{{--                            <i class="fas fa-envelope text-dark" style="font-size: 1.6em;"></i>--}}
+                            <i class="fi-xwsuxl-envelope-solid" style="font-size: 1.6em;"></i>
+                            {{count($messages)}}
+                        </h3>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                        @foreach($messages as $message)
+                            <a class="dropdown-item" href="{{route('message.show', $message->id)}}">{{$message->subject}}</a>
+                        @endforeach
+                        <a href="{{route('message.index', Auth::user()->id)}}">
+                            View all messages
+                        </a>
+                    </div>
+                        @endif
                 </div>
             </div>
         </nav>

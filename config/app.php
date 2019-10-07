@@ -174,8 +174,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-       Spatie\Permission\PermissionServiceProvider::class,
-        Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
+        //Debugbar
+//        App\Barryvdh\Debugbar\ServiceProvider::class,
+        //Charts disabled
+        //Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
 
 
     ],

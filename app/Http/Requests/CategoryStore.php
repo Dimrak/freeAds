@@ -15,7 +15,8 @@ class CategoryStore extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check();
+        return Auth::user()->hasRole('admin');
+//        return Auth::check();
     }
 
     /**

@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-2">
     @if(session()->has('message'))
-        <div class="alert alert-success w-25 d-block mr-auto ml-auto text-center" role="alert">
+        <div class="alert alert-success w-50 d-block mr-auto ml-auto text-center resize-width-40 mt-4" role="alert">
             {{session()->get('message')}}
         </div>
     @endif

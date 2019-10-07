@@ -13,9 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Meaning of this root - not active to enable route:cache
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 //No need to add the word api before, as it would be already creating the path with api/ before
 Route::get('/subscribers', 'Api\SubscribersController@index');
 Route::post('/subscribers/', 'Api\SubscribersController@create');

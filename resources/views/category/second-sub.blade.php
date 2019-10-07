@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container pr-5 pl-5">
+    <div class="container">
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb p-3 mt-2 w-50 mr-auto ml-auto">
+        <ol class="breadcrumb p-3 mt-2 w-100 mr-auto ml-auto custom-width-cats">
             <li class="breadcrumb-item"><a href="{{route('category.index')}}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{route('category.show', $father)}}">{{ucfirst($father)}}</a></li>
             <li class="breadcrumb-item"><a href="{{route('category.showSub', $firstParent)}}">{{ucfirst($firstParent)}}</a></li>
@@ -25,16 +25,16 @@
             @endforeach
         </div>
         <div id="advertsCategory" class="container w-100">
-            <ul class="list-group container w-75">
+            <ul class="list-group container">
                 {{--This is only showing the adverts which are only in the secondSubcategories, FORD,TOYOTA--}}
                     @foreach($secondSub->advertsCat as $advert)
                         <a href="{{route('advert.show', $advert->slug)}}" class="list-group-item list-group-item-action">{{$advert->title}}</a>
                         <div class="media">
                             <img src="{{$advert->image}}" class="mr-3 img-thumbnail" alt="{{$advert->slug}}">
                             <div class="media-body">
-                                <p>{!! html_entity_decode($advert->content)!!}</p>
+                                <p>{!! Str::words(html_entity_decode($advert->content),20)!!}</p>
                                 <p>{{$advert->price}}</p>
-                                <p>{{$advert->categoryName->title}}</p>
+                                <p class=""><mark>{{$advert->categoryName->title}}</mark></p>
                             </div>
                         </div>
                     @endforeach

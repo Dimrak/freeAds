@@ -19,9 +19,6 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\Integer;
 
-
-//Hello from server to New linux installed on Marija's computer
-
 class AdvertController extends Controller
 {
     /**
@@ -54,7 +51,6 @@ class AdvertController extends Controller
             $data['title'] = $catTitle->title . '/' . $category->title;
             $attributes = AttributeSetRelationship::all()->where('attribute_set_id', $catTitle->attribute_set_id);
             $data['attributes'] = $attributes;
-//            dd($data);
             $data['attributeSetRel'] = AttributeSetRelationship::all()->where('attribute_set_id', $category->attribute_set_id)
             ->where('active', 1);
             return view('adverts.create', $data);
@@ -67,8 +63,14 @@ class AdvertController extends Controller
 
     public function createTemplate()
     {
-        $data['parentCategories'] = Category::all()->where('parent_id', 0);
-        return view('adverts.createTemplate', $data);
+        $user = Auth::user();
+        if ($user) {
+            $data['parentCategories'] = Category::all()->where('parent_id', 0);
+            return view('adverts.createTemplate', $data);
+        }else{
+            return redirect()->route('login')->with('message','Please login');
+        }
+
     }
 
     public function createSub(Request $request)
@@ -81,8 +83,6 @@ class AdvertController extends Controller
         } else {
             return redirect()->route('advert.createTemplate')->with('message', 'Choose a category');
         }
-
-
     }
 
     /**
@@ -95,17 +95,11 @@ class AdvertController extends Controller
     {
         return view('testing.file');
     }
-
     public function store(StoreAdvert $request)
     {
         $validated = $request->validated();
         $advert = new Advert();
-        //Advert table save
-//        $validatedData = $request->validate([
-//            'title' => 'required|unique:posts|max:255',
-//            'body' => 'required',
-//        ]);
-        $advert->title = $validated('title');
+        $advert->title = $validated['title'];
         $advert->content = $request->content_text;
         $advert->cat_id = $request->categoryFinal;
         $advert->image = $request->image;
@@ -116,8 +110,7 @@ class AdvertController extends Controller
         $advert->slug = Str::slug($request->title, '-');
         $advert->counter = 0;
         $advert->save();
-//        dd($advert);
-        //Values saving
+        //Attributes saving
         $keys = $request->keys();
         foreach ($keys as $key){
             if(strpos($key, 'att')!== false){
@@ -149,9 +142,7 @@ class AdvertController extends Controller
         $secondSub = Category::all()->where('id', $advert->cat_id)->first();
         $subCategory = Category::all()->where('id', $secondSub->parent_id)->first();
         $category = Category::all()->where('id', $subCategory->parent_id)->first();
-//        dd($advert->id);
         $attributes = AttributesValue::all()->where('advert_id', $advert->id);
-//        dd($attributes);
         $data['attributes'] = $attributes;
         $data['cat'] = $category->title;
         $data['secondSub'] = $secondSub->title;
@@ -180,7 +171,6 @@ class AdvertController extends Controller
         $data['counter'] = $x;
         return view('adverts.edit', $data);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -190,7 +180,6 @@ class AdvertController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $advert = Advert::find($id);
         $advert->title = $request->title;
         $advert->content = $request->content_text;
@@ -199,7 +188,6 @@ class AdvertController extends Controller
         $advert->attribute_set_id = $advert->attribute_set_id;
         $advert->slug = Str::slug($request->title);
         $advert->save();
-
         $attributes = AttributeSetRelationship::all()->where('attribute_set_id', $advert->attribute_set_id);
         $counter = 0;
         foreach ($attributes as $single) {
@@ -216,8 +204,6 @@ class AdvertController extends Controller
         }
         return redirect()->route('advert.index');
     }
-
-
     /**
      * Remove the specified resource from storage.
      *
@@ -233,7 +219,7 @@ class AdvertController extends Controller
         $advert->save();
         $user = Auth::user();
         if ($user && ($user->hasRole('admin'))) {
-            return redirect()->action('AdminController@index');
+            return redirect()->route('AdminController@index');
         } else {
             return redirect()->action('HomeController@index');
         }
@@ -241,12 +227,16 @@ class AdvertController extends Controller
 
     public function disable($id)
     {
-//       dd('hel');
-        $id;
         $advert = Advert::find($id);
         $advert->active = 0;
         $advert->save();
-        return redirect()->route('advert.index')->with('Advert disable');
+//        return view('home')->with('message', 'Advert disable, notification sent, check your messages');
+//        return redirect('home')->with('message', 'Advert disable, notification sent, check your messages');
+        return redirect()->back()->with('message', 'Advert disabled');
+//        return redirect()->route('category.index')->with('message', 'Message sent');
+
+//        return redirect()->action('CategoryController@index')->with('message', 'Advert disable, notification sent, check your messages');
+//        return redirect()->route('advert.show', $data)->with('message', 'Choose a subcategory');
 
     }
 }

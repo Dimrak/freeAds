@@ -7,13 +7,13 @@
     @endhasrole
     <div class="container mt-3">
         @if(session()->has('message'))
-
-            {{session()->get('message')}}
-
-            @endif
+            <div class="alert alert-success w-25 d-block mr-auto ml-auto text-center" role="alert">
+                {{session()->get('message')}}
+            </div>
+        @endif
             @if ($errors->any())
                 {{--            {{dd($errors)}}--}}
-                <div class="alert alert-danger w-75 d-block mr-auto ml-auto" role="alert">
+                <div class="alert alert-danger w-75 d-block mr-auto ml-auto resize-width-40" role="alert">
                     @foreach ($errors->all() as $error)
                         <p>{{$error}}</p>
                     @endforeach

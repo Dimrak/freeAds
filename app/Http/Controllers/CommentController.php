@@ -37,16 +37,25 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-       $comment = new Comment();
-       $comment->advert_id = $request->advertId;
-       $comment->content = $request->comment_text;
-       $user = Auth::user();
-       $comment->user_id = $user->id;
+//        dd($request);
+//        dd($request->comment);
+        $user = Auth::user();
+        if ($user && $user->hasAnyRole(['client', 'admin'])) {
+            $comment = new Comment();
+            $advert = Advert::all()->where('id', $request->advertId)->first();
+            $comment->advert_id = $advert->id;
+            $comment->content = $request->comment;
+            $comment->user_id = $user->id;
+            $comment->save();
+            return redirect()->route('advert.show', $advert->slug)
+                ->with('message-correct', 'Comment published');
 
-       $advert = Advert::find($request->advertId);
-       $comment->save();
+        }else{
+            $advert = Advert::all()->where('id', $request->advertId)->first();
+            return redirect()->route('advert.show', $advert->slug)
+                ->with('message', 'Only registered users can comment');
+        }
 
-       return redirect()->route('advert.show', $advert->slug);
     }
 
     /**

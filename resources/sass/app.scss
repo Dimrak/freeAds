@@ -1,13 +1,42 @@
+//@import "~font-awesome/scss/font-awesome.scss";
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+//$fa-font-path: "../fonts/vendor/font-awesome" !default;
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+//$fa-font-path: "fonts" !default;
+
+//$fa-font-path: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" !default;
 
 // Variables
 @import 'variables';
 
+// Font Awesome
+//$fa-font-path: "~font-awesome/fonts";
+
+
+////@import '~font-awesome/scss/_variables.scss';
+//////@import '~fortawesome/scss/_variables.scss';
+//@import '~font-awesome/scss/font-awesome.scss';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import '~summernote/dist/summernote-bs4.css';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+
+//@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+//@import '~@fortawesome/fontawesome-free/scss/brands';
+//@import '~@fortawesome/fontawesome-free/scss/regular';
+//@import '~@fortawesome/fontawesome-free/scss/solid';
 
 
 //Custom css
 @import "main";
+
+// resources/assets/sass/app.scss
+// Font Awesome
+//@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
