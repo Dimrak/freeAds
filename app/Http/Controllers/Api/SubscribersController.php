@@ -24,17 +24,17 @@ class SubscribersController extends Controller
         $subscriber->save();
 
         return Subscribers::collection($request);
-        $subscriber = new Subscriber();
+//        $subscriber = new Subscriber();
     }
     public function delete($id)
     {
 //        return 1;
         $subscriber = new Subscriber();
-     $subscriber::find($id);
-     $subscriber->active = 0;
-     $subcriber->name = $subscriber->name;
-     $subcriber->email = $subscriber->email;
-     $subscriber->save();
+        $subscriber::find($id);
+        $subscriber->active = 0;
+        $subscriber->name = $subscriber->name;
+        $subscriber->email = $subscriber->email;
+        $subscriber->save();
 
     }
     public function destroy($id)

@@ -24,24 +24,21 @@ class AdminController extends Controller
      */
     public function index()
     {
-//        $users = User::all()->whereBetween('created_at', [$monday, $sunday]);
-        $adverts =
+
         $data['adverts'] = Advert::all()->where('active',1);
         $data['categories'] = Category::all();
         $data['users'] = User::all()->where('active', 1);
         $data['cities'] = City::all();
         $user = Auth::user();
-        
+
        if ($user !== null) {
           if ($user->hasRole('admin')) {
-             return view('admin.index', $data, compact('chartjs'));
+             return view('admin.index', $data);
           } else {
              return abort('403');
-//             return redirect()->route('category.index')->with('message', 'Access denied');
           }
        }else{
           return abort('401');
-//          return view('category.index')->with('message','Access denied');
        }
     }
     /**
@@ -117,8 +114,13 @@ class AdminController extends Controller
     }
    public function categories()
    {
-      $data['categories'] = Category::all()->where('parent_id', 0);
-      return view('admin.categories', $data);
+      $user = Auth::user();
+      if ($user->hasRole('admin')) {
+         $data['categories'] = Category::all()->where('parent_id', 0);
+         return view('admin.categories', $data);
+      }else{
+         return abort('401');
+      }
    }
 
 

@@ -60,9 +60,12 @@ Route::get('search/searching/', 'SearchController@searching')->name('search.sear
 //Route::get('search/action', 'SearchController@action')->name('search.action');
 
 //Admin
-Route::resource('admin', 'AdminController');
+//Route::resource('admin', 'AdminController');
 Route::get('admin/index', 'AdminController@index')->name('admin.index');
+Route::get('admin/create', 'AdminController@create')->name('admin.create');
 Route::get('admin/adverts', 'AdminController@adverts')->name('admin.adverts');
+//Route::get('admin/adverts', 'AdminController@adverts')->name('admin.adverts');
+Route::post('admin/store', 'AdminController@store')->name('admin.store');
 Route::get('admin/categories', 'AdminController@categories')->name('admin.categories');
 Route::get('admin/attributes', 'AdminController@attributes')->name('admin.attributes');
 Route::resource('attribute', 'AttributeController');
@@ -76,7 +79,7 @@ Route::resource('city','CityController');
 
 //For API
 Route::get('subscribers', 'Api\SubscribersController@index');
-Route::resource('subscribers', 'SubscribersController');
+Route::resource('subscribers', 'Api\SubscribersController');
 
 //DEV::
 //Route::get('message/showAll/{id}', 'MessageController@showAll')->name('messages.showAll');

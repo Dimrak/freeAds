@@ -334,6 +334,28 @@ span{
 #message {
     min-height: 200px;
 }
+@media only screen and (min-width: 375px){
+    .custom-margin-l{
+        margin-left: 30%!important;
+    }
+}
+@media only screen and (min-width: 768px){
+    .custom-margin-l{
+        margin-left: 15%!important;
+    }
+}
+@media only screen and (min-width: 1024px) {
+
+    .custom-margin-l {
+        margin-left: 35%!important;
+    }
+}
+@media only screen and (min-width: 1440px) {
+
+    .custom-margin-l {
+        margin-left: 45%!important;
+    }
+}
 .categoryPanel{
     width: 50%;
 }

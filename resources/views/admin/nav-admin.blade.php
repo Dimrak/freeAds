@@ -4,6 +4,7 @@
             <div class="sidebar-sticky">
                 <h4 class=""><mark class="rounded pr-2 pl-2"><a class="text-black text-decoration-none" href="{{route('admin.index')}}">Admin options</a></mark></h4>
                 <ul class="nav flex-column">
+
                     <li class="nav-item">
                         <a href="{{route('category.create')}}" class="nav-link ">Create category</a>
                     </li>
@@ -25,9 +26,9 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{route('admin.categories')}}" class="nav-link">All Categories</a>
-
                     </li>
                     <li class="nav-item">
+{{--                        {{dd(route('admin.attributes'))}}--}}
                         <a href="{{route('admin.attributes')}}" class="nav-link">Attributes</a>
 
                     </li>

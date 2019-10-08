@@ -41,7 +41,8 @@
                         <div id="collapse<?php echo $counter?>" class="collapse" aria-labelledby="heading<?php echo $counter?>" data-parent="#accordionExample">
                             <div class="card-body">
                                 <p>{{$message->message}}</p>
-                                <small>{{$message->userName->name}}</small>
+                                <small class="">{{$message->userName->name}}</small>
+                                <a href="{{route('message.show', $message->id)}}" class="">Reply</a>
                             </div>
                         </div>
                     </div>
