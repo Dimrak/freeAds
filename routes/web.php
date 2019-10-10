@@ -43,6 +43,7 @@ Route::delete('/advert/{id}', 'AdvertController@destroy')->name('advert.destroy'
 //Message
 Route::resource('message', 'MessageController');
 Route::get('message/showAll/{id}', 'MessageController@showAll')->name('message.showAll');
+Route::post('message/storeReply/{id}', 'MessageController@storeReply')->name('message.storeReply');
 
 //Attribute
 Route::resource('attribute', 'AttributeController');
@@ -70,6 +71,10 @@ Route::get('admin/categories', 'AdminController@categories')->name('admin.catego
 Route::get('admin/attributes', 'AdminController@attributes')->name('admin.attributes');
 Route::resource('attribute', 'AttributeController');
 //Route::get('attributeSetRela/update', 'AttributeSetRelaController@update')->name('attributeSetRela.update');
+
+//Profile
+Route::get('profile/index/{name}', 'ProfileController@index')->name('profile.index');
+Route::get('profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
 
 //Comment
 Route::resource('comment', 'CommentController');
