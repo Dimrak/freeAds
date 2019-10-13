@@ -17,7 +17,7 @@ class NewUserEmailAdminListener implements ShouldQueue
      */
     public function handle($event)
     {
-       sleep(10);
+       sleep(5);
 
        Mail::to($event->admin->email)->send(new NewUserMail());
     }

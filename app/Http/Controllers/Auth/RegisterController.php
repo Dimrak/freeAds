@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Spatie\Permission\Traits\HasRoles;
 use App\Events\NewUserEvent;
+use App\Events\WelcomeMessageEvent;
 
 class RegisterController extends Controller
 {
@@ -77,7 +78,9 @@ class RegisterController extends Controller
         $user = User::latest()->first();
         $admin = User::all()->where('id', 1)->first();
 //        dd($admin->email);
+       event(new WelcomeMessageEvent($user));
         event(new NewUserEvent($admin));
+//        event(new WelcomeMessageEvent($user));
 
        return $user->assignRole('client');
 

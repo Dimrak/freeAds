@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Events\AdvertCreatedEvent;
 use App\Events\NewUserEvent;
+use App\Events\WelcomeMessageEvent;
 use App\Listeners\NewAdvertConfirmationListener;
 use App\Listeners\NewUserEmailAdminListener;
+use App\Listeners\WelcomeMessageListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -24,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
         ],
        NewUserEvent::class => [
           NewUserEmailAdminListener::class,
+       ],
+       WelcomeMessageEvent::class => [
+          WelcomeMessageListener::class,
        ]
     ];
 
