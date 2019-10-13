@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Spatie\Permission\Traits\HasRoles;
+use App\Events\NewUserEvent;
 
 class RegisterController extends Controller
 {
@@ -74,7 +75,11 @@ class RegisterController extends Controller
             ''
         ]);
         $user = User::latest()->first();
-        return $user->assignRole('client');
+        $admin = User::all()->where('id', 1)->first();
+//        dd($admin->email);
+        event(new NewUserEvent($admin));
+
+       return $user->assignRole('client');
 
 //        return redirect()->action('Auth\LoginController')->with('message', 'User created please login');
     }

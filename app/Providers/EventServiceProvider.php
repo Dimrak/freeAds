@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\AdvertCreatedEvent;
+use App\Events\NewUserEvent;
+use App\Listeners\NewAdvertConfirmationListener;
+use App\Listeners\NewUserEmailAdminListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -15,9 +19,12 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        AdvertCreatedEvent::class => [
+            NewAdvertConfirmationListener::class,
         ],
+       NewUserEvent::class => [
+          NewUserEmailAdminListener::class,
+       ]
     ];
 
     /**

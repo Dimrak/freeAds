@@ -9,10 +9,12 @@ use App\Category;
 use App\Comment;
 use App\City;
 use App\Http\Requests\StoreAdvert;
+use App\Mail\NewAdvertMail;
 use App\User;
 use App\Mail\NewAdvert;
 use App\AttributeSet;
 use App\AttributeSetRelationship;
+use App\Events\AdvertCreatedEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -105,11 +107,15 @@ class AdvertController extends Controller
         $advert->image = $request->image;
         $advert->city_id = $request->city;
         $user = Auth::user();
+        dd($user);
         $advert->user_id = $user->id;
         $advert->price = $request->price;
         $advert->slug = Str::slug($request->title, '-');
         $advert->counter = 0;
         $advert->save();
+        event(new AdvertCreatedEvent($user));
+
+        dump('New advert crated');
         //Attributes saving
         $keys = $request->keys();
         foreach ($keys as $key){
