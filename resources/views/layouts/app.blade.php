@@ -15,13 +15,15 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{--<script src="{{ asset('js/app.js') }}" ></script>--}}
+{{--    <script src="{{ mix('/js/app.js') }}"></script>--}}
     <script src="{{ URL::to('~/js/ajax-search.js') }}"></script>
 
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--    <link href="{{ mix('css/app.css') }}" rel="stylesheet">--}}
 {{--    alternative to fontawesome--}}
     <script defer src="https://friconix.com/cdn/friconix.js"></script>
 
@@ -69,9 +71,9 @@
                     </ul>
                     @if(Auth::user())
                     <a href="{{route('message.index')}}" id="navbarDropdown" role="button" class="nav-link">
-                        <h3 class="badge text-dark mt-2">
+                        <h3 class="badge text-info border-white font-weight-bolder mt-2 bg-dark p-2" style="-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;">
 {{--                            <i class="fas fa-envelope text-dark" style="font-size: 1.6em;"></i>--}}
-                            <i class="fi-xwsuxl-envelope-solid" style="font-size: 1.6em;"></i>
+                            <i class="fi-xwsuxl-envelope-solid text-white" style="font-size: 1.6em;"></i>
                             {{count($messages)}}
                         </h3>
                     </a>
@@ -105,5 +107,7 @@
     </div>
 {{--Missing footer--}}
         @include('pages.footer');
+    <script src="{{ asset('js/app.js') }}" ></script>
+
 </body>
 </html>

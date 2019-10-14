@@ -3,11 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Advert;
+use App\User;
 use Illuminate\Http\Request;
 use DB;
 
 class SearchController extends Controller
 {
+
+   public function index(Request $request)
+   {
+
+//      $users = User::where('email', 'LIKE', "%{$request->keywords}%")->get();
+      $adverts = Advert::where('title', 'LIKE', "%{$request->keywords}%")->take(1)->get();
+//         ->orwhere('content', 'LIKE', "%{$request->keywords}%")->get();
+      return response()->json($adverts);
+   }
 
    public function searching(Request $request)
    {

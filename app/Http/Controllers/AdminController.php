@@ -24,16 +24,15 @@ class AdminController extends Controller
      */
     public function index()
     {
-
-        $data['adverts'] = Advert::all()->where('active',1);
-        $data['categories'] = Category::all();
-        $data['users'] = User::all()->where('active', 1);
-        $data['cities'] = City::all();
+        $adverts = Advert::Active()->get();
+        $users = User::Active()->get();
+        $categories = Category::all();
+        $cities = City::all();
         $user = Auth::user();
 
        if ($user !== null) {
           if ($user->hasRole('admin')) {
-             return view('admin.index', $data);
+             return view('admin.index', compact('adverts', 'users', 'categories', 'cities'));
           } else {
              return abort('403');
           }
@@ -50,9 +49,7 @@ class AdminController extends Controller
     {
        $users = User::all();
        $types = MessageType::all();
-       $data['users'] = $users;
-       $data['types'] = $types;
-       return view('admin.message', $data);
+       return view('admin.message', compact('users','types'));
     }
 
     /**
@@ -63,17 +60,25 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-      $message = new Message();
-      $message->subject = $request->subject;
-      $message->message = $request->message;
-      $message->recip_id = $request->user;
-      $user = Auth::user();
-      $message->sender = $user->id;
-      $message->active = 1;
-      $message->seen = date("Y/m/d");
-      $message->status = 1;
-      $message->type = $request->type;
-      $message->save();
+//       $user = Auth::user();
+       $data = request()->validate([
+          'subject' => 'required',
+          'message' => 'required',
+          'recip_id' => 'required',
+          'type' => 'required',
+       ]);
+       Message::create($data);
+//      $message = new Message();
+//      $message->subject = $request->subject;
+//      $message->message = $request->message;
+//      $message->recip_id = $request->user;
+//      $user = Auth::user();
+//      $message->sender = $user->id;
+//      $message->active = 1;
+//      $message->seen = date("Y/m/d");
+//      $message->status = 1;
+//      $message->type = $request->type;
+//      $message->save();
        return redirect()->route('admin.index')->with('message', 'Message sent');
     }
     public function sendMessage(Request $request)
@@ -166,4 +171,11 @@ class AdminController extends Controller
         $data['users'] = $users;
         return view('admin.message', $data);
     }
+
+   public function search(Request $request)
+   {
+      $users = User::where('email', $request->keywords)->get();
+
+      return response()->json($users);
+   }
 }

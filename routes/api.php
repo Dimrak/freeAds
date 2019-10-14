@@ -22,5 +22,7 @@ Route::get('/subscribers', 'Api\SubscribersController@index');
 Route::post('/subscribers/', 'Api\SubscribersController@create');
 //Route::delete('/subscribers', 'Api\SubscribersController@destroy');
 Route::delete('/subscribers/{id}', 'Api\SubscribersController@destroy');
-
 Route::post('vue','TestVueController@index');
+
+Route::get('search', 'SearchController@index');
+//Route::post('/images', 'UploadsController@store');

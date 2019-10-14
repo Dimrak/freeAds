@@ -86,6 +86,10 @@ Route::resource('city','CityController');
 Route::get('subscribers', 'Api\SubscribersController@index');
 Route::resource('subscribers', 'Api\SubscribersController');
 
+Route::post('/images', 'UploadsController@store');
+
+
+
 //DEV::
 //Route::get('message/showAll/{id}', 'MessageController@showAll')->name('messages.showAll');
 //Route::get('advert/userAds/{id}', 'AdvertController@userAds')->name('advert.userAds');

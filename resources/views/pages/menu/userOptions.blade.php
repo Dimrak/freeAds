@@ -1,6 +1,6 @@
-<li class="nav-item dropdown">
-    <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-        <i class="fi-cnsuxl-user-circle-solid mr-2 text-dark"></i>{{ Auth::user()->name }}
+<li class="nav-item dropdown bg-success" style="-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;">
+    <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark font-weight-bolder" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        <i class="fi-cnsuxl-user-circle-solid mr-2 text-white" style="font-size: 1.2em;"></i>{{ Auth::user()->name }}
     </a>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
         @role('admin')

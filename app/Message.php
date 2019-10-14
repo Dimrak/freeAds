@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
+   protected $guarded = [];
     //para escribir menos logica en el controller
     public function scopeUnread($query)
     {

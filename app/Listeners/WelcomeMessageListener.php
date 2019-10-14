@@ -22,7 +22,7 @@ class WelcomeMessageListener implements ShouldQueue
        sleep(5);
 
          $welcome = new Message();
-       $admin = User::all()->where('id',1);
+       $admin = User::all()->where('id',1)->first();
 //       $admin = $check_user->hasRole('admin');
 
        $welcome->subject = 'Welcome to FreeAds';

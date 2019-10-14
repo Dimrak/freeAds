@@ -66,7 +66,7 @@ main.py-4 {
     /*margin: 0 auto;*/
     margin-right: auto;
     margin-left: auto;
-    width: 60%;
+    /*width: 90%;*/
     margin-top: 25px;
     text-align: center;
     /*margin-bottom: 20px;*/
@@ -307,6 +307,12 @@ span{
     text-align: center;
 }
 /*Admin panel*/
+@media only screen and (min-width: 1024px) {
+    .custom-nav-flex {
+        flex-direction: row !important;
+    }
+}
+
 .disabled {
     background-color: #ff947a;
 }

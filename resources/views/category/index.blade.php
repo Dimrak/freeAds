@@ -1,36 +1,46 @@
 @extends('layouts.app')
 @section('content')
+    @include('pages.tops');
+
     @if(session()->has('message'))
         <div class="alert alert-success w-25 d-block mr-auto ml-auto text-center" role="alert">
             {{session()->get('message')}}
         </div>
     @endif
-    <my-button text="" type="submit"></my-button>
-    <div class="w-100 custom-bg border-bottom border-dark d-none latest-adverts">
-            <div class="row no-gutters">
-                <div class="col-md-2">
-                    <h5 class="pt-2 mr-auto ml-auto text-center text-center mt-5 w-75 font-weight-bolder">Latest adverts</h5>
-                </div>
-            @foreach($adverts as $advert)
-                <div class="col-md-1 foto-hover text-center">
-                    <a href="{{route('advert.show', $advert->slug)}}">
-                    <img src="{{$advert->image}}" class="img-fluid card-img w-100 foto-hover" alt="{{$advert->slug}}">
-                    <p class="card-text"><small class="text-muted">{{$advert->updated_at}}</small></p>
-                    </a>
-                </div>
-                <div class="col-md-1 mr-auto ml-auto"  >
-                    <div class="card-body text-center">
-                        <h4 class="card-title">{{ucfirst($advert->title)}}</h4>
+    {{--<my-button text="" type="submit"></my-button>--}}
+    {{--<search-email text="search" name="email"></search-email>--}}
+    {{--<display-search></display-search>--}}
+
+    {{--Static view for the latest adverts--}}
+    {{--<div class="w-100 custom-bg border-bottom border-dark d-none latest-adverts">--}}
+            {{--<div class="row no-gutters">--}}
+                {{--<div class="col-md-2">--}}
+                    {{--<h5 class="pt-2 mr-auto ml-auto text-center text-center mt-5 w-75 font-weight-bolder">Latest adverts</h5>--}}
+                {{--</div>--}}
+            {{--@foreach($adverts as $advert)--}}
+                {{--<div class="col-md-1 foto-hover text-center">--}}
+                    {{--<a href="{{route('advert.show', $advert->slug)}}">--}}
+                    {{--<img src="{{$advert->image}}" class="img-fluid card-img w-100 foto-hover" alt="{{$advert->slug}}">--}}
+                    {{--<p class="card-text"><small class="text-muted">{{$advert->updated_at}}</small></p>--}}
+                    {{--</a>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-1 mr-auto ml-auto"  >--}}
+                    {{--<div class="card-body text-center">--}}
+                        {{--<h4 class="card-title">{{ucfirst($advert->title)}}</h4>--}}
                         {{--<p class="card-text">This is a wider card with supporting</p>--}}
-                        <p class="card-text">Price <small>{{$advert->price}} </small></p>
-                    </div>
-                </div>
-            @endforeach
-                <div class="col-md-2"></div>
-            </div>
-        </div>
+                        {{--<p class="card-text">Price <small>{{$advert->price}} </small></p>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--@endforeach--}}
+                {{--<div class="col-md-2"></div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+
+    {{--End static view--}}
         <div class="container pt-2">
-            <div id="categoryIndexHome" class="flexBox w-75">
+            <div id="categoryIndexHome" class="w-100">
+                <div class="row">
+                    <div class="col-8 flexBox">
                 @foreach($categories as $category)
                     <div class="fix-width m-2 mb-4">
                         <h5 class="top-menu-list text-left"><a class="text-success"
@@ -52,7 +62,17 @@
                         </ul>
                     </div>
                 @endforeach
+                    </div>
+                    <div class="col-4">
+                        <display-search></display-search>
+                    </div>
+                </div>
             </div>
+
+            {{--<div id="app">--}}
+                {{--<file-upload></file-upload>--}}
+            {{--</div>--}}
+
 <!--            --><?php
 //            $startime = microtime(true);
 //            $endtime = microtime(true);
@@ -64,7 +84,10 @@
 ////            echo $startime;
 //
 //            ?>
+
+
         </div>
+
     <?php
     $array = 'AUN CONCERTS 2019
 Fri. 06.09. - D Oranienburg, Open Air
@@ -102,13 +125,16 @@ Sun. 19.04.20 Berlin - Admiralspalast';
 //       echo "No es una calle";
 //    }
     // Filtrar vocales:
-    $string = 'No coger vocales';
-    echo preg_match_all("/[^aeiou]/", $string, $matches); // 10
-    // Filtrar vocales y espacios:
-    echo preg_match_all("/[^ aeiou]/", $string, $matches); // 8
-    // Filtrar consonantes:
-    $string = "NO coger MAYUSCULAS solo minusculas"; // 23
-    echo preg_match_all("/[^A-Z]/", $string, $matches);
+//    $string = 'No coger vocales';
+//    echo preg_match_all("/[^aeiou]/", $string, $matches); // 10
+//    // Filtrar vocales y espacios:
+//    echo preg_match_all("/[^ aeiou]/", $string, $matches); // 8
+//    // Filtrar consonantes:
+//    $string = "NO coger MAYUSCULAS solo minusculas"; // 23
+//    echo preg_match_all("/[^A-Z]/", $string, $matches);
 
     ?>
+
+
 @endsection
+{{--<script src="{{ mix('js/app.js') }}"></script>--}}

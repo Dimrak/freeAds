@@ -43,4 +43,8 @@ class User extends Authenticatable
    public function comments(){
       return $this->hasOne('App\User', 'user_id', 'name');
    }
+   public function scopeActive($query)
+   {
+      return $query->where('active', 1);
+   }
 }

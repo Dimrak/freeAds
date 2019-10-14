@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button :type="type" v-text="test.namw" class="my-button"></button>
+        <button :type="type" v-text="test.name" class="my-button"></button>
     </div>
 </template>
 

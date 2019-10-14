@@ -60,6 +60,9 @@ class CategoryController extends Controller
      */
     public function store(CategoryStore $request)
     {
+//        $data = request->validate([
+//            'title' => 'required|max:50|unique:categories',
+//         ]);
         $validated = $request->validated();
         $category = new Category();
         $category->title = $validated['title'];
