@@ -1718,16 +1718,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6364,7 +6354,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.row-custom{\n    justify-content: center;\n}\n.center-input{\n    text-align: center;\n}\n.border-custom{\n    display: block;\n    width: 126px;\n    height: 180px;\n    background-color: red;\n    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;\n}\n", ""]);
+exports.push([module.i, "\n.row-custom{\n    justify-content: center;\n}\n.center-input{\n    text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -49260,7 +49250,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "center-input container-fluid p-0" }, [
-    _c("label", { staticClass: "mt-2 pb-2" }, [_vm._v("Quick-Match")]),
+    _c("label", { staticClass: "mt-2 pb-2 bg-success p-2 rounded mr-1" }, [
+      _vm._v("Quick-Match")
+    ]),
     _vm._v(" "),
     _c("input", {
       directives: [
@@ -49271,7 +49263,7 @@ var render = function() {
           expression: "keywords"
         }
       ],
-      attrs: { type: "text", placeholder: "Ajax search" },
+      attrs: { type: "text", placeholder: "Search what you need" },
       domProps: { value: _vm.keywords },
       on: {
         input: function($event) {
@@ -49285,7 +49277,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "w-100 custom-bg d-none latest-adverts border-custom" },
+      { staticClass: "w-100 box-quick d-none latest-adverts border-custom" },
       [
         _vm.results.length > 0
           ? _c(
@@ -49296,18 +49288,16 @@ var render = function() {
                   "div",
                   {
                     key: result.id,
-                    staticClass:
-                      "col-md-8 d-block foto-hover text-center mt-3 font-weight-bolder"
+                    staticClass: "col-md-8 d-block foto-hover text-center mt-3 "
                   },
                   [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(result.title) +
-                        "\n                "
-                    ),
-                    _c("a", { attrs: { href: "" } }, [
+                    _c("p", { staticClass: "bg-dark text-white rounded p-1" }, [
+                      _vm._v(_vm._s(result.title))
+                    ]),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "advert/" + result.slug } }, [
                       _c("img", {
-                        staticClass: "img-fluid card-img w-50 foto-hover",
+                        staticClass: "img-fluid card-img w-50 foto-hover mt-0",
                         staticStyle: {
                           height: "100px",
                           "-webkit-border-radius": "5px",
@@ -49318,11 +49308,15 @@ var render = function() {
                         attrs: { src: result.image, alt: "result.image" }
                       }),
                       _vm._v(" "),
-                      _c("p", { staticClass: "card-text text-dark" }, [
-                        _vm._v("Price "),
-                        _c("small", {
-                          domProps: { textContent: _vm._s(result.price) }
-                        })
+                      _c("mark", { staticClass: "mt-1 font-weight-bolder" }, [
+                        _c("p", { staticClass: "card-text text-dark" }, [
+                          _vm._v("Price "),
+                          _c("small", {
+                            staticClass: "font-weight-bolder",
+                            domProps: { textContent: _vm._s(result.price) }
+                          }),
+                          _vm._v(" €")
+                        ])
                       ])
                     ])
                   ]
@@ -61677,7 +61671,8 @@ Vue.component('my-button', __webpack_require__(/*! ./components/MyButton.vue */ 
 Vue.component('file-upload', __webpack_require__(/*! ./components/FileUploadComponent.vue */ "./resources/js/components/FileUploadComponent.vue")["default"]);
 Vue.component('field-required', __webpack_require__(/*! ./components/FieldRequired.vue */ "./resources/js/components/FieldRequired.vue")["default"]);
 Vue.component('search-email', __webpack_require__(/*! ./components/SearchEmail.vue */ "./resources/js/components/SearchEmail.vue")["default"]);
-Vue.component('display-search', __webpack_require__(/*! ./components/DisplaySearch.vue */ "./resources/js/components/DisplaySearch.vue")["default"]);
+Vue.component('display-search', __webpack_require__(/*! ./components/DisplaySearch.vue */ "./resources/js/components/DisplaySearch.vue")["default"]); // Vue.component('active-nav', require('./components/ActiveNav.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

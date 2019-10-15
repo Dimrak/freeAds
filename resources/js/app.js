@@ -24,6 +24,7 @@ Vue.component('file-upload', require('./components/FileUploadComponent.vue').def
 Vue.component('field-required', require('./components/FieldRequired.vue').default);
 Vue.component('search-email', require('./components/SearchEmail.vue').default);
 Vue.component('display-search', require('./components/DisplaySearch.vue').default);
+// Vue.component('active-nav', require('./components/ActiveNav.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

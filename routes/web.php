@@ -57,6 +57,10 @@ Route::get('attributeSetRela/edit/{id}', 'AttributeSetRelaController@edit')->nam
 //Route::get('search', 'SearchController@index')->name('search');
 //Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
 Route::get('search/searching/', 'SearchController@searching')->name('search.searching');
+Route::get('search/mostVisited/', 'SearchController@mostVisited')->name('search.mostVisited');
+Route::get('search/recentlyAdded/', 'SearchController@recentlyAdded')->name('search.recentlyAdded');
+Route::get('search/lastUpdated/', 'SearchController@lastUpdated')->name('search.lastUpdated');
+Route::get('search/inProgress/', 'SearchController@inProgress')->name('search.inProgress');
 //Route::get('search/index', 'SearchController@index')->name('search');
 //Route::get('search/action', 'SearchController@action')->name('search.action');
 

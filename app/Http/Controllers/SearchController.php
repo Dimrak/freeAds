@@ -31,12 +31,43 @@ class SearchController extends Controller
      return view('search.index',$data);
    }
 
-//    public function index()
-//    {
-//        return view('search');
-//    }
+   public function mostVisited()
+   {
+      $keyword = 'Most visited';
+      $results = Advert::Active()->orderBy('counter','DESC')->paginate(10);
+//      dd($results);
+      return view('search.index', compact('results', 'keyword'));
+   }
+   public function recentlyAdded()
+   {
+      $keyword = 'Recently added';
+      $results = Advert::Active()->orderBy('created_at','DESC')->paginate(10);
+//      dd($results);
+      return view('search.index', compact('results', 'keyword'));
+   }
+   //Need to add expiring date - 30 days
+   public function lastDay()
+   {
+   }
 
-    /**
+   //Need to add discount option
+   public function discount()
+   {
+   }
+   public function lastUpdated()
+   {
+      $keyword = 'Last updated';
+      $results = Advert::Active()->orderBy('updated_at','DESC')->paginate(10);
+//      dd($results);
+      return view('search.index', compact('results', 'keyword'));
+   }
+   public function inProgress()
+   {
+      return view('search.inProgress');
+   }
+
+
+   /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

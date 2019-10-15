@@ -9,7 +9,7 @@ use App\City;
 class CityController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a advert-listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a advert-listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */

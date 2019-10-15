@@ -1,23 +1,13 @@
 body {
-    zoom: 1.3;
+    zoom: 0.9;
     /*background-color: red!important;*/
 
 }
-@media only screen and (min-width: 768px){
-    body{
-        zoom: 0.9!important;
-    }
-}
-@media only screen and (min-width: 1440px){
-    body{
-        zoom: 1!important;
-    }
-}
-@media only screen and (min-width: 1980px){
-    body{
-        zoom: 1.2!important;
-    }
-}
+/*@media only screen and (min-width: 768px){*/
+    /*body{*/
+        /*!*zoom: 0.9!important;*!*/
+    /*}*/
+/*}*/
 .top-menu-list{
     color: #2ba72f;
     font-weight: 600;
@@ -45,7 +35,7 @@ body {
 }
 @media only screen and (min-width: 1440px){
     .fix-width{
-        /*width: 20%!important;*/
+        width: 20%!important;
     }
 }
 main.py-4 {
@@ -120,7 +110,7 @@ main.py-4 {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     align-content: center;
 }
 @media only screen and (min-width: 768px){
@@ -128,7 +118,7 @@ main.py-4 {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
         align-content: center;
     }
     .resize-width{
@@ -460,18 +450,3 @@ footer p {
 .hoverNav:hover{
     color: rgba(227,96,0,0.82);
 }
-/*Adverts bg*/
-.custom-bg-adverts{
-    background-color: rgba(240,240,240,0.8);
-}
-/*custom margin-top*/
-@media only screen and (max-width: 768px) and (min-width: 300px) {
-    .custom-margin-top {
-        margin-top: 15px !important;
-    }
-}
-    /*@media screen and (max-width: 991px) and (min-width: 768px){*/
-        /*.tablet-view{*/
-            /*display: contents;*/
-        /*}*/
-    /*}*/

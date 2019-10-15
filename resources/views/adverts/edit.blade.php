@@ -50,4 +50,13 @@
             </div>
         </div>
     </div>
+
+    <div class="center">
+        <input style="text-align: center" id="code" readonly="readonly" type="text" value="Juodaragis.Pro.X30" />
+        <button class="faun-code" id="btn-code" onclick="faunCode()">Kopijuoti kodą</button>
+        <a href="https://www.bilietai.lt/lit/renginiai/koncertai/kodo-japonija-297312/" style="text-align: justify;" target="_blank">
+            <img alt="bilitai-lt" src="http://www.gmgyvai.lt/data/uploads/bilietai-melyna-fona.png" style="width: 200px; display: block; margin: 0 auto;" />
+        </a>
+    </div>
+
 @endsection

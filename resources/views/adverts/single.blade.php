@@ -15,7 +15,7 @@
         @endif
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb p-3 mt-2 w-100 mr-auto ml-auto custom-width-cats">
-            <li class="breadcrumb-item"><a href="{{route('category.index')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{route('category.show', $cat)}}">{{ucfirst($cat)}}</a></li>
             <li class="breadcrumb-item"><a href="{{route('category.showSub', $sub)}}">{{ucfirst($sub)}}</a></li>
             <li class="breadcrumb-item"><a href="{{route('category.showSubSub', $secondSub)}}">{{ucfirst($secondSub)}}</a></li>
@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $advert->title}}</h5>
                     <p class="card-text">{!! html_entity_decode($advert->content,ENT_QUOTES, 'UTF-8')!!}</p>
-                    <p class="card-text">Price: {{ $advert-> price}} €</p>
+                    <p class="card-text">Price: {{ $advert-> price}} &euro;</p>
                     <p class="card-text"><small class="text-muted">Last change: {{$advert->updated_at}}</small></p>
                     @foreach($attributes as $single)
                         <label class="d-inline mr-2" for="{{$single->attributes->name}}">{{ucfirst($single->attributes->name)}}: </label>

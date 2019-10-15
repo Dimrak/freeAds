@@ -24,7 +24,7 @@ use phpDocumentor\Reflection\Types\Integer;
 class AdvertController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a advert-listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -107,7 +107,7 @@ class AdvertController extends Controller
         $advert->image = $request->image;
         $advert->city_id = $request->city;
         $user = Auth::user();
-        dd($user);
+//        dd($user);
         $advert->user_id = $user->id;
         $advert->price = $request->price;
         $advert->slug = Str::slug($request->title, '-');
@@ -145,6 +145,9 @@ class AdvertController extends Controller
     public function show(Advert $advert)
     {
         $data['advert'] = $advert;
+        $advert->counter = $advert->counter + 1;
+        $advert->save();
+//        $advert->updateCounter();
         $secondSub = Category::all()->where('id', $advert->cat_id)->first();
         $subCategory = Category::all()->where('id', $secondSub->parent_id)->first();
         $category = Category::all()->where('id', $subCategory->parent_id)->first();
@@ -156,6 +159,12 @@ class AdvertController extends Controller
         $data['comments'] = Comment::all();
         $data['users'] = User::all();
         return view('adverts.single', $data);
+    }
+    public function updateCounter()
+    {
+//       $this->advert->counter =+ $advert->counter;
+       $advert->counter =+ 1;
+       $advert->save();
     }
 
     /**

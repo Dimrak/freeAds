@@ -12,6 +12,19 @@ class Advert extends Model
    {
       return 'slug';
    }
+//   public function updateCounter()
+//   {
+//      $this->advert->counter = 1;
+//      $this->advert->save();
+//   }
+   public function getComment()
+   {
+      return $this->hasOne('App\Comment','advert_id', 'id');
+   }
+   public function cityName()
+   {
+      return $this->hasOne('App\City','id','city_id');
+   }
    public function comments()
    {
       return $this->hasMany('App\Comment', 'advert_id', 'id');

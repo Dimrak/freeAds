@@ -1,20 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="heading text-center pt-3 mb-5">
-        <h5 class="bg-info p-2 d-inline font-weight-bold rounded ">Adverts found for {{$keyword}}</h5>
-        </div>
-    @foreach ($results as $advert)
-        <a href="{{route('advert.show', $advert->slug)}}" class="list-group-item list-group-item-action">{{$advert->title}}</a>
-        <div class="media">
-            <img src="{{$advert->image}}" class="mr-3 img-thumbnail" alt="{{$advert->slug}}">
-            <div class="media-body">
-                <p>{!! html_entity_decode($advert->content)!!}</p>
-                <p>{{$advert->price}}</p>
-                <p>{{$advert->categoryName->title}}</p>
-            </div>
-        </div>
-    @endforeach
+    @include('pages.tops')
+    <div class="container w-100">
+        {{--<div class="bg-info p-2 font-weight-bold rounded text-center">--}}
+        <h5 class="text-center mb-2 bg-dark text-white font-weight-bolder w-75 rounded mr-auto ml-auto p-2 mt-2 resize-width">{{$keyword}}</h5>
+        @foreach($results as $advert)
+                @include('pages.advert-listing.template-adverts')
+        @endforeach
+    </div>
+
+    <div class="pt-3 mt-5">
+        {{$results->links()}}
     </div>
 @endsection
