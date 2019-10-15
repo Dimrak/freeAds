@@ -2,7 +2,7 @@
     <div class="center-input container-fluid p-0">
         <label class="mt-2 pb-2 bg-success p-2 rounded mr-1">Quick-Match</label>
         <input type="text" v-model="keywords" placeholder="Search what you need">
-        <div class="w-100 box-quick d-none latest-adverts border-custom">
+        <div class="w-100 box-quick latest-adverts border-custom">
             <div class="row no-gutters row-custom" v-if="results.length > 0">
                 <div class="col-md-8 d-block foto-hover text-center mt-3 " v-for="result in results" :key="result.id">
                     <p class="bg-dark text-white rounded p-1">{{result.title}}</p>
@@ -27,13 +27,12 @@
                 results: []
             };
         },
-        //wathing for typed characters
+        //wacthing for typed characters
         watch: {
             keywords(after, before) {
                 this.fetch();
             }
         },
-
         methods: {
             fetch() {
                 axios.get('api/search', { params: { keywords: this.keywords } })

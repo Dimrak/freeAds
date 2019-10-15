@@ -19,7 +19,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('my-button', require('./components/MyButton.vue').default);
+// Vue.component('my-button', require('./components/MyButton.vue').default);
 Vue.component('file-upload', require('./components/FileUploadComponent.vue').default);
 Vue.component('field-required', require('./components/FieldRequired.vue').default);
 Vue.component('search-email', require('./components/SearchEmail.vue').default);

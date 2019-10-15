@@ -1,33 +1,41 @@
 @extends('layouts.app')
 @section('content')
     @include('admin.nav-admin');
+    <div class="container pt-3">
+        <div class="row">
+            <?php $hoverCounter = 0?>
+            @foreach($categories as $category)
+                <div class="col-sm-10 col-md-4">
+                    <h4 class="bg-dark p-2 rounded">
+                        <a href="{{route('category.show',$category->slug)}}"
+                           class="btn-link text-decoration-none text-white w-25">{{$category->title}}</a>
+                    </h4>
+                    <div class="grouping  d-block text-dark font-weight-bolder p-2 rounded" style="background-color: rgba(240,240,240,0.7); color: #1b1e21!important;">
 
-    <div class="container adminPanel categoryPanel pt-3">
-
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active">Categories</a>
-        </div>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item" aria-current="page">
-                    @foreach($categories as $category)
-                        <h4 class="bg-dark p-2 rounded"><a href="{{route('category.show',$category->slug)}}" class="btn-link text-decoration-none text-white">{{$category->title}}</a></h4> <!--Instrument-->
-                    @foreach($category->subCategories as $subcat)
-                            <h6><mark class="pr-1 pl-1 border border-dark">
-                                    <a href="{{route('category.showSub', $subcat->slug)}}" class="text-decoration-none text-dark">{{$subcat->title}}</a>
-                                </mark></h6>
-                        @foreach ($subcat->subCategories as $secondSub)
-                                <p><a href="{{route('category.showSubSub',$secondSub->slug)}}">{{$secondSub->title}}</a></p>
+                        @foreach($category->subCategories as $subcat)
+                            <h6 class="d-block mb-2 mt-2 hover<?php echo $hoverCounter?>">
+                                <mark class="pr-1 pl-1 border border-dark rounded">
+                                    <a href="{{route('category.showSub', $subcat->slug)}}"
+                                       class="text-decoration-none text-dark header<?php echo $hoverCounter?>">{{$subcat->title}}</a>
+                                </mark>
+                            </h6>
+                            @foreach ($subcat->subCategories as $secondSub)
+                                <p class="d-inline-block p-2 hover<?php echo $hoverCounter?>">
+                                    <a class="text-decoration-none black" href="{{route('category.showSubSub',$secondSub->slug)}}">{{$secondSub->title}}, </a>
+                                </p>
+                            @endforeach
+                          <?php $hoverCounter++?>
                         @endforeach
-                    @endforeach
+                        <?php $hoverCounter = 0?>
+                    </div>
+                </div>
 
-                @endforeach
-            </ol>
-        </nav>
+            @endforeach
+        </div>
         <a class="badge badge-success p-2" href="{{route('admin.index')}}">Back admin page</a>
         <a class="badge badge-warning p-2" href="{{route('category.create')}}">Create category</a>
     </div>
+    <style>
 
-
-
+    </style>
 @endsection

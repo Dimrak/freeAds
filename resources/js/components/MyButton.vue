@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button :type="type" v-text="test.name" class="my-button"></button>
+        <button :type="type" v-text="text" class="my-button"></button>
     </div>
 </template>
 
@@ -14,7 +14,6 @@
                     this.test = response.data;
                 })
         },
-
         data: function (){
           return {
               test: null,

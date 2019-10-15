@@ -1,13 +1,13 @@
 <div class="container-fluid" style="border-bottom: 2px solid black;">
     <div class="row">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-bg w-100 d-inline-block" style="background-color: rgba(164,159,149,0.49)">
-            <div class="container" style="margin-right: 0;">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-bg w-100 d-inline-block text-center" style="background-color: rgba(164,159,149,0.49)">
+            <div class="container text-center" style="">
                 {{--<a class="navbar-brand font-weight-bolder" href="{{ url('/') }}">Home</a>--}}
                 {{--<button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#admin-options" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">--}}
                     {{--<span class="navbar-toggler-icon"></span>--}}
                 {{--</button>--}}
                 {{--<active-nav></active-nav>--}}
-                <ul class="nav flex-row " id="admin-options">
+                <ul class="nav flex-row mr-auto ml-auto" id="admin-options">
 
                     <li class="nav-item active">
                         <a href="{{route('search.mostVisited')}}" class="nav-link hoverNav font-weight-bolder ">Most visited</a>

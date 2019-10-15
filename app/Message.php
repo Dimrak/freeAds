@@ -21,4 +21,10 @@ class Message extends Model
     {
         return $this->hasOne('App\User','id','sender');
     }
+    public function scopeUser($query,$user){
+        return $query->where('recip_id', $user->id);
+    }
+    public function scopeNotRead($query){
+        return $query->where('status', 0);
+    }
 }

@@ -4,11 +4,7 @@
     @role('admin')
     @include('admin.nav-admin');
     <div class="container adminPanel mt-3">
-        @if(session()->has('message'))
-        <div class="alert alert-success" role="alert">
-            {{session()->get('message')}}
-        </div>
-        @endif
+
             <div class="jumbotron mt-3">
                 <h1 class="display-4">Hello, admin!</h1>
                 <p class="lead">Week statistics;</p>

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Message;
+use App\Category;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,17 +19,13 @@ class AppServiceProvider extends ServiceProvider
     {
 
         view()->composer('layouts.app', function($view) {
-            //get all parent categories with their subcategories
-            $categories = \App\Category::parents()->get(); //For the categories in dropdown
+            $categories = Category::parents()->get();
             $user = Auth::user(); //get the id
            if ($user) {
-              $messages = \App\Message::all()->where('recip_id', $user->id)->Where('status',1);
-//              $userOne->unread();
+               $messages = Message::NotRead()->User($user)->get();
            }else{
               $userOne = '';
            }
-            //attach the categories to the view
-//            $view->with(compact( 'messages'));
             $view->with(compact('categories', 'messages'));
         });
     }

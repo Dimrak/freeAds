@@ -18,6 +18,11 @@ class SearchController extends Controller
 //         ->orwhere('content', 'LIKE', "%{$request->keywords}%")->get();
       return response()->json($adverts);
    }
+   public function searchEmail(Request $request)
+   {
+       $users = User::where('email', 'LIKE', "%{$request->keywords}%")->get();
+       return response()->json($users);
+   }
 
    public function searching(Request $request)
    {

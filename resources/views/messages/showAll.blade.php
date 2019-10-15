@@ -3,7 +3,16 @@
 
 @section('content')
     <div class="container custom-width-70">
-
+        @if(session()->has('message'))
+            <div class="alert alert-success w-25 d-block mr-auto ml-auto text-center" role="alert">
+                {{session()->get('message')}}
+            </div>
+        @endif
+        @if(session()->has('message_wrong'))
+            <div class="alert alert-danger w-25 d-block mr-auto ml-auto text-center" role="alert">
+                {{session()->get('message_wrong')}}
+            </div>
+        @endif
         @foreach($messages as $message)
 {{--        <div class="row justify-content-center mt-2">--}}
 {{--            <div class="col-md-8">--}}

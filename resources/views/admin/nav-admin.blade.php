@@ -38,7 +38,7 @@
                         <a href="{{route('admin.attributes')}}" class="nav-link">Attributes</a>
 
                     </li>
-                    <a class="badge badge-success p-2 mt-2" href="{{route('category.index')}}">Back home page</a>
+                    <a class="badge badge-success p-2 mt-2" href="{{url('/')}}">Back home page</a>
 
                 </ul>
             </div>

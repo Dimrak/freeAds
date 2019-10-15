@@ -60,7 +60,6 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-//       $user = Auth::user();
        $data = request()->validate([
           'subject' => 'required',
           'message' => 'required',
@@ -68,17 +67,6 @@ class AdminController extends Controller
           'type' => 'required',
        ]);
        Message::create($data);
-//      $message = new Message();
-//      $message->subject = $request->subject;
-//      $message->message = $request->message;
-//      $message->recip_id = $request->user;
-//      $user = Auth::user();
-//      $message->sender = $user->id;
-//      $message->active = 1;
-//      $message->seen = date("Y/m/d");
-//      $message->status = 1;
-//      $message->type = $request->type;
-//      $message->save();
        return redirect()->route('admin.index')->with('message', 'Message sent');
     }
     public function sendMessage(Request $request)

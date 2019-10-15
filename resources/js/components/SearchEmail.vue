@@ -1,9 +1,18 @@
 <template>
     <div>
+
+        <label class="d-block">Search user</label>
+
         <input type="text" v-model="keywords">
-        <ul v-if="results.length > 0">
-            <li v-for="result in results" :key="result.id" v-text="result.title"></li>
-        </ul>
+        <select class="custom-show mt-2" name="recip_id" id="" v-if="results.length > 0">
+            <option class="form-control mt-1 font-weight-bolder">Choose a user</option>
+            <option class="form-control mt-1 text-primary font-weight-bolder">Send to all users</option>
+            <option class="" v-for="result in results" :key="result.id" v-text="result.email" :value="result.id"></option>
+        </select>
+<!--        <ul v-if="results.length > 0">-->
+<!--            <li class="" v-for="result in results" :key="result.id" v-text="result.email"></li>-->
+<!--        </ul>-->
+
     </div>
 </template>
 
@@ -24,7 +33,7 @@
 
         methods: {
             fetch() {
-                axios.get('api/search', { params: { keywords: this.keywords } })
+                axios.get('http://194.5.157.101/FreeAds/public/api/search/searchEmail', { params: { keywords: this.keywords } })
                     .then(response => this.results = response.data)
                     .catch(error => {});
             }
@@ -34,3 +43,18 @@
         },
     }
 </script>
+<style>
+    
+    @media only screen and (min-width: 768px){
+        .custom-show{
+            display: inline-block;
+        }
+    }
+    @media only screen and (min-width: 1024px){
+        .custom-show{
+            display: inline-block;
+            margin-left: 5%;
+        }
+    }
+    
+</style>
