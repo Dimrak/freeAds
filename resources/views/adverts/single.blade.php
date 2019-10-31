@@ -37,10 +37,13 @@
                     <h5 class="card-title">{{ $advert->title}}</h5>
                     <p class="card-text">{!! html_entity_decode($advert->content,ENT_QUOTES, 'UTF-8')!!}</p>
                     <p class="card-text">Price: {{ $advert-> price}} &euro;</p>
+                    <p class="card-text">Location: {{ $advert->cityName->name}}</p>
                     <p class="card-text"><small class="text-muted">Last change: {{$advert->updated_at}}</small></p>
                     @foreach($attributes as $single)
-                        <label class="d-inline mr-2" for="{{$single->attributes->name}}">{{ucfirst($single->attributes->name)}}: </label>
+                        <div class="mb-2">
+                        <label class="d-inline mr-2 bg-dark p-1 rounded text-white font-weight-bolder" for="{{$single->attributes->name}}">{{ucfirst($single->attributes->name)}}: </label>
                         <p class="d-inline">{{$single->value}}</p>
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -48,8 +51,14 @@
             <div class="card-header">Comments</div>
             <div class="card-body">
                 @foreach($advert->comments as $comment)
-                    <h5 class="card-title">{{$comment->user->name}}</h5>
-                    <p class="card-text">{{$comment->content}}</p>
+                    @if ($comment->user->id == $advert->user_id)
+                        <h6><i class="fi-snsuxl-user-tie-circle"></i>Advert owner</h6>
+                        <h5 class="card-title">{{$comment->user->name}}</h5>
+                        <p class="card-text">{{$comment->content}}</p>
+                        @else
+                        <h5 class="card-title">{{$comment->user->name}}</h5>
+                        <p class="card-text">{{$comment->content}}</p>
+                    @endif
                 @endforeach
                 @if($advert->active === 0)
                     <!--no form when disabled-->
@@ -76,10 +85,8 @@
             <button type="submit" class="btn alert-danger">Tun off advert</button>
         </form>
         @endhasanyrole
-        <a href="{{  route('advert.index') }}" class="nav-link">Go back to advert list</a>
+        <a href="{{  url('/') }}" class="nav-link">Go back to advert list</a>
     </div>
-
-
 
 @endsection
 

@@ -4,19 +4,34 @@
 @include('admin.nav-admin');
 
         <div class="row w-75 h-25 text-dark mr-auto ml-auto mb-2">
+            @if(session()->has('message'))
+                <div class="alert alert-success w-25 rounded ml-auto mr-auto" role="alert">
+                    {{session()->get('message')}}
+                </div>
+            @endif
+
+                @if(session()->has('messageError'))
+                    <div class="alert alert-danger w-25 rounded ml-auto mr-auto" role="alert">
+                        {{session()->get('messageError')}}
+                    </div>
+                @endif
+
+            <h4 class="d-block w-100 mt-3">Edit attributes</h4>
+            <p class="d-block">Here you can edit which attributes are assigned to a family category</p>
 
             <div class="mt-2 rounded p-3 d-block border border-dark attributes-assign text-white bg-danger">
                 <h3 class="p-1 text-center">Remove attributes</h3>
                 <form method="post" action="{{ route('attributeSetRela.update', $family) }}">
                     @csrf
                     @method('PUT')
-                    <select name="family">
-                        <option class="form-control mt-1 dropdown-menu">Choose a family attribute</option>
-                        @foreach($att_set as $setter)
+                    {{--<select name="family">--}}
+                        {{--<option class="form-control mt-1 dropdown-menu">Choose a family attribute</option>--}}
+                        {{--@foreach($att_set as $setter)--}}
 
-                            <option class="dropdown-item" value="{{$setter->id}}">{{ $setter->name }}</option>
-                        @endforeach
-                    </select>
+                            {{--<option class="dropdown-item" value="{{$setter->id}}">{{ $setter->name }}</option>--}}
+                        {{--@endforeach--}}
+                    {{--</select>--}}
+                    <input type="hidden" value="{{$family}}" name="family">
                     <div class="row">
                         @foreach($attributes as $singleAtt)
                             <div class="col-2 bg-transparent border-0 text-white bg-dark">
@@ -29,6 +44,7 @@
                 </form>
             </div>
             <a class="badge badge-success p-2 mt-2" href="{{route('admin.index')}}">Back admin page</a>
+            <a class="badge badge-primary p-2 mt-2 ml-2" href="{{route('admin.attributes')}}">Back attributes page</a>
         </div>
 <div class="row mr-auto ml-auto d-block mt-3">
     <div class="col">
@@ -64,6 +80,6 @@
         </table>
     </div>
 </div>
-<a class="badge badge-success p-2 mt-2" href="{{route('admin.index')}}">Back admin page</a>
+{{--<a class="badge badge-success p-2 mt-2" href="{{route('admin.index')}}">Back admin page</a>--}}
 </div>
 @endsection

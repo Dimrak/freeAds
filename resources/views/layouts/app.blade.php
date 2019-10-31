@@ -75,6 +75,7 @@
                         <h3 class="badge text-info border-white font-weight-bolder mt-2 bg-dark p-2" style="-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;">
 {{--                            <i class="fas fa-envelope text-dark" style="font-size: 1.6em;"></i>--}}
                             <i class="fi-xwsuxl-envelope-solid text-white" style="font-size: 1.6em;"></i>
+{{--                            {{dd(count($messages))}}--}}
                             {{count($messages)}}
                         </h3>
                     </a>

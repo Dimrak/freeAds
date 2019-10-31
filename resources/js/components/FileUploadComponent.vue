@@ -20,7 +20,7 @@
             this.dropzone = new Dropzone(this.$refs.imageUpload, {
                 url: '/api/images'
             });
-            console.log('Component mounted Dropzone.')
+            // console.log('Component mounted Dropzone.')
         }
     }
 </script>

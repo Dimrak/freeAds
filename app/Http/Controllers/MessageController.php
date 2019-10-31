@@ -13,8 +13,14 @@ class MessageController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $allUsers = User::all();
         $messages = Message::where('recip_id', $user->id)->orderBy('created_at', 'desc')->get();
+        $replies = Message::where('sender', $user->id)->orderBy('created_at', 'desc')->get();
+
+//        dd($messages);
         $data['messages'] = $messages;
+        $data['replies'] = $replies;
+        $data['allUsers'] = $allUsers;
         return view('messages.index', $data);
     }
     public function show($id)
@@ -46,7 +52,7 @@ class MessageController extends Controller
             $message->type = $request->type;
             $message->save();
          }
-       } elseif (isset($request->recip_id)) {
+       } elseif (isset($request->recip_id) && $admin === true) {
            $data = request()->validate([
                'subject' => 'required',
                'message' => 'required',
@@ -54,6 +60,17 @@ class MessageController extends Controller
                'type' => 'required',
            ]);
            Message::create($data);
+//          dd($data);
+          return redirect()->route('admin.index')->with('message', 'Message sent');
+       }elseif($admin != true){
+          $data = request()->validate([
+             'subject' => 'required',
+             'message' => 'required',
+             'recip_id' => 1,
+             'type' => 'required',
+          ]);
+//          dd($data);
+          Message::create($data);
           return redirect()->route('admin.index')->with('message', 'Message sent');
        }
        return redirect()->route('admin.index')->with('message', 'Message sent to all users');
@@ -68,12 +85,12 @@ class MessageController extends Controller
         $message = Message::find($id);
         $admin = $message->sender;
         $data += [
-            'recip_id' => $user->id,
-            'sender'=> $admin,
+            'recip_id' => $admin,
+            'sender'=> $user->id,
             'parent_id' => $message->id,
             'type' => $message->type,
             ];
-        Message::create($data);
+//        Message::create($data);
        if(Message::create($data) == true) {
           return redirect()->route('message.index')->with('message', 'Message sent');
        }else{

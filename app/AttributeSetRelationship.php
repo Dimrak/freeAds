@@ -10,6 +10,10 @@ class AttributeSetRelationship extends Model
     {
         return $this->hasOne('App\Attribute','id', 'attribute_id');
     }
+    public function family($id)
+    {
+       return $this->where('attribute_set_id', $id);
+    }
     public function names()
     {
 //        return $this->hasOne('App\Attributes', 'id', 'attribute_id');

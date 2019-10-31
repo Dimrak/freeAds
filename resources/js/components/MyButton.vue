@@ -7,7 +7,7 @@
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
+            // console.log('Component mounted.')
 
             axios.post('api/vue',{})
                 .then(response => {

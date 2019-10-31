@@ -8,9 +8,12 @@
         @foreach($results as $advert)
                 @include('pages.advert-listing.template-adverts')
         @endforeach
+        {{--@foreach($resultsCity as $advert)--}}
+            {{--@include('pages.advert-listing.template-adverts')--}}
+        {{--@endforeach--}}
     </div>
 
     <div class="pt-3 mt-5">
-        {{$results->links()}}
+{{--        {{$results->links()}}--}}
     </div>
 @endsection

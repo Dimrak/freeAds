@@ -7,6 +7,9 @@
             {{session()->get('message')}}
         </div>
     @endif
+
+<!--    --><?php //phpinfo(); ?>
+{{--    {{dd(phpinfo())}}--}}
     {{--Static view for the latest adverts--}}
     <div class="w-100 custom-bg border-bottom border-dark d-none latest-adverts">
             <div class="row no-gutters">

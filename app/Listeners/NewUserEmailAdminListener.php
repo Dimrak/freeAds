@@ -2,23 +2,30 @@
 
 namespace App\Listeners;
 
+use App\Events\NewUserEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\NewUserMail;
 
-class NewUserEmailAdminListener implements ShouldQueue
+class NewUserEmailAdminListener
 {
+    /**
+     * Create the event listener.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param  NewUserEvent  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(NewUserEvent $event)
     {
-       sleep(5);
-
-       Mail::to($event->admin->email)->send(new NewUserMail());
+        //
     }
 }

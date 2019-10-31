@@ -79,6 +79,7 @@ Route::resource('attribute', 'AttributeController');
 //Profile
 Route::get('profile/index/{name}', 'ProfileController@index')->name('profile.index');
 Route::get('profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
+Route::post('profile/store/{id}', 'ProfileController@store')->name('profile.store');
 
 //Comment
 Route::resource('comment', 'CommentController');

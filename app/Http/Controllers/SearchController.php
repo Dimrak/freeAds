@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Advert;
+use App\City;
 use App\User;
 use Illuminate\Http\Request;
 use DB;
@@ -26,11 +27,17 @@ class SearchController extends Controller
 
    public function searching(Request $request)
    {
-      $results = Advert::query()
+//      dd($request->cityName);
+      dd($results = Advert::query()
          ->where('title', 'LIKE', "%{$request->search}%")
          ->orwhere('content', 'LIKE', "%{$request->search}%")
+         ->orwhere('city_id', 'LIKE', "%{$request->cityName}%")
+         ->get());
+      $resultsCity = City::query()
+         ->where('name', 'LIKE', "%{$request->search}%")
          ->get();
       $data['results'] = $results;
+//      $data['resultsCity'] = $resultsCity;
       $data['keyword'] = $request->search;
 //      dd($data);
      return view('search.index',$data);

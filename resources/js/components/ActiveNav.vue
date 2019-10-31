@@ -25,7 +25,7 @@
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
+            // console.log('Component mounted.')
             var header = document.getElementById("admin-options");
             var btns = header.getElementsByClassName("nav-item");
             for (var i = 0; i < btns.length; i++) {

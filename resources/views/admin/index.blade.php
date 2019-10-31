@@ -3,6 +3,7 @@
 @section('content')
     @role('admin')
     @include('admin.nav-admin');
+{{--    @include('admin2.nav-admin');--}}
     <div class="container adminPanel mt-3">
 
             <div class="jumbotron mt-3">
@@ -28,7 +29,7 @@
 {{--                <a href="{{route('admin.categories')}}" class="list-group-item list-group-item-action">All Categories</a>--}}
 {{--                <a href="{{route('admin.attributes')}}" class="list-group-item list-group-item-action">Attributes</a>--}}
 {{--            </div>--}}
-    <a class="badge badge-success p-2 mt-2" href="{{route('category.index')}}">Back home page</a>
+    <a class="badge badge-success p-2 mt-2" href="{{url('/')}}">Back home page</a>
     @endrole
     </div>
 

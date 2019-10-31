@@ -23,4 +23,13 @@ class ProfileController extends Controller
        $data['user'] = $user;
        return view('profile.edit',$data);
     }
+    public function store(Request $request, $id)
+    {
+//      dd($id);
+      $user = User::find($id);
+      $user->name = $request->name;
+      $user->save();
+      $data['name'] = $request->name;
+       return redirect()->route('profile.index', $data);
+    }
 }

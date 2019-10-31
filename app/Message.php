@@ -11,7 +11,7 @@ class Message extends Model
     //para escribir menos logica en el controller
     public function scopeUnread($query)
     {
-        return $query->where('status', 1);
+        return $query->where('status', 0);
     }
     public function messageType()
     {
@@ -25,6 +25,6 @@ class Message extends Model
         return $query->where('recip_id', $user->id);
     }
     public function scopeNotRead($query){
-        return $query->where('status', 0);
+        return $query->where('status', 1);
     }
 }

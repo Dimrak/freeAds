@@ -12,7 +12,7 @@ class AttributeController extends Controller
 //        dd($request);
         $newFamily = new Attribute();
         $newFamily->name = $request->name;
-        $newFamily->type_id = $request->type;
+        $newFamily->type_id = 1;
         $newFamily->save();
         return redirect()->route('admin.attributes')->with('message', 'Attribute ' . $request->name . ' created');
 
